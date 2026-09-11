@@ -41,6 +41,35 @@ const benefits = [
   'Sharper focus and mental clarity',
   'A stronger immune response over time',
 ];
+
+const packages = [
+  {
+    name: 'Weekend Ritual',
+    price: 'From £150',
+    summary: 'One unit — sauna, hot tub, or cold plunge — delivered Friday and collected Monday.',
+    features: ['Full delivery & setup', 'One wellness unit', 'Simple how-to-use guide'],
+  },
+  {
+    name: 'Full Ritual',
+    price: 'From £420',
+    summary: 'The complete circuit: sauna, wood-fired hot tub, and cold plunge for the whole weekend.',
+    features: ['Full delivery & setup', 'All three units', 'On-site orientation'],
+    featured: true,
+  },
+  {
+    name: 'Standing Ritual',
+    price: 'Price on request',
+    summary: 'An ongoing rental for your home or venue, checked in on and maintained by our team.',
+    features: ['Monthly rolling rental', 'Regular maintenance visits', 'Swap or upgrade any time'],
+  },
+];
+
+const eventTypes = [
+  { label: 'Private gardens', copy: 'A sauna and cold plunge set up at home for a birthday, a stag, or just a good weekend.' },
+  { label: 'Corporate wellness days', copy: 'Bring heat-and-cold recovery to your office or offsite as a proper team perk.' },
+  { label: 'Weddings & retreats', copy: 'A calming centrepiece for guests the morning after, or a quiet ritual mid-retreat.' },
+  { label: 'Festivals & pop-ups', copy: 'Full setup and on-site hosting for multi-day events and brand activations.' },
+];
 ---
 
 <Layout
@@ -102,6 +131,33 @@ const benefits = [
     </div>
   </section>
 
+  <section id="packages" class="packages">
+    <div class="wrap">
+      <p class="eyebrow">Packages</p>
+      <h2>Choose your ritual</h2>
+      <p class="section-intro">
+        Simple, upfront pricing. Every package includes delivery, full
+        setup, and collection — you just show up.
+      </p>
+      <div class="package-grid">
+        {packages.map((pkg) => (
+          <article class={`package-card ${pkg.featured ? 'package-card--featured' : ''}`}>
+            {pkg.featured && <p class="package-badge">Most popular</p>}
+            <h3>{pkg.name}</h3>
+            <p class="package-price">{pkg.price}</p>
+            <p class="package-summary">{pkg.summary}</p>
+            <ul class="package-features">
+              {pkg.features.map((f) => (
+                <li>{f}</li>
+              ))}
+            </ul>
+            <a class="button button--outline" href="#contact">Enquire</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section id="wellness-anywhere" class="wellness-anywhere">
     <div class="wrap wellness-inner">
       <p class="eyebrow">Wellness Anywhere</p>
@@ -119,6 +175,26 @@ const benefits = [
           </div>
         ))}
       </div>
+    </div>
+  </section>
+
+  <section id="events" class="events">
+    <div class="wrap">
+      <p class="eyebrow">Events</p>
+      <h2>Bring Onda Ritual to your event</h2>
+      <p class="section-intro">
+        From a private garden to a full festival activation, we deliver,
+        host, and pack down — so wellness is just part of the day.
+      </p>
+      <div class="event-grid">
+        {eventTypes.map((e) => (
+          <div class="event-item">
+            <h3>{e.label}</h3>
+            <p>{e.copy}</p>
+          </div>
+        ))}
+      </div>
+      <a class="button" href="#contact">Enquire about your event</a>
     </div>
   </section>
 
@@ -264,6 +340,123 @@ const benefits = [
     margin-bottom: 0.8rem;
   }
 
+  .packages {
+    background: var(--color-bg);
+  }
+
+  .package-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    margin-top: 2.5rem;
+  }
+
+  .package-card {
+    background: #fff;
+    border: 1px solid var(--color-line);
+    border-radius: 0.75rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .package-card--featured {
+    border-color: var(--color-ember);
+    box-shadow: 0 0.5rem 1.5rem rgba(160, 90, 58, 0.12);
+  }
+
+  .package-badge {
+    align-self: flex-start;
+    background: var(--color-ember);
+    color: var(--color-stone);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    margin: 0 0 1rem;
+  }
+
+  .package-price {
+    color: var(--color-ember);
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+
+  .package-summary {
+    color: var(--color-ink-soft);
+  }
+
+  .package-features {
+    list-style: none;
+    margin: 0 0 1.6rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex-grow: 1;
+  }
+
+  .package-features li {
+    position: relative;
+    padding-left: 1.4rem;
+    font-size: 0.9rem;
+    color: var(--color-ink-soft);
+  }
+
+  .package-features li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: var(--color-ember);
+  }
+
+  .package-card .button {
+    align-self: flex-start;
+  }
+
+  .events {
+    background: var(--color-olive);
+    color: var(--color-stone);
+  }
+
+  .events .section-intro {
+    color: #dce0d7;
+  }
+
+  .event-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin: 2.8rem 0 2.5rem;
+    border-top: 1px solid rgba(232, 228, 221, 0.25);
+    padding-top: 2.5rem;
+  }
+
+  .event-item h3 {
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .event-item p {
+    font-size: 0.92rem;
+    color: #dce0d7;
+    margin: 0;
+  }
+
+  .events .button {
+    background: var(--color-stone);
+    color: var(--color-charcoal);
+    border-color: var(--color-stone);
+  }
+
   .wellness-anywhere {
     background: var(--color-charcoal);
     color: var(--color-stone);
@@ -366,11 +559,13 @@ const benefits = [
   }
 
   @media (max-width: 900px) {
-    .experience-grid {
+    .experience-grid,
+    .package-grid {
       grid-template-columns: 1fr;
     }
 
-    .values-grid {
+    .values-grid,
+    .event-grid {
       grid-template-columns: repeat(2, 1fr);
     }
 
@@ -380,7 +575,8 @@ const benefits = [
   }
 
   @media (max-width: 560px) {
-    .values-grid {
+    .values-grid,
+    .event-grid {
       grid-template-columns: 1fr;
     }
   }
