@@ -1,37 +1,94 @@
 ---
+import WaveMark from './WaveMark.astro';
+
 const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <p class="wordmark">Onda Ritual</p>
-    <p class="tagline">Slow rituals for a steadier life.</p>
-    <p class="meta">&copy; {year} Onda Ritual. All rights reserved.</p>
+    <div class="footer-brand">
+      <WaveMark size={34} class="footer-mark" />
+      <p class="wordmark">Onda Ritual</p>
+      <p class="tagline">Natural rituals. Brighter days.</p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="#experiences">Experiences</a>
+      <a href="#wellness-anywhere">Wellness Anywhere</a>
+      <a href="#benefits">Benefits</a>
+      <a href="#contact">Enquire</a>
+    </nav>
+
+    <div class="footer-contact">
+      <a href="mailto:hello@ondaritual.co.uk">hello@ondaritual.co.uk</a>
+      <a href="tel:+441234567890">+44 (0) 1234 567 890</a>
+    </div>
   </div>
+  <p class="meta">&copy; {year} Onda Ritual. All rights reserved.</p>
 </footer>
 
 <style>
   .site-footer {
-    border-top: 1px solid var(--color-line);
-    background: var(--color-bg-alt);
-    padding-block: 3rem;
-    text-align: center;
-    color: var(--color-ink-soft);
+    background: var(--color-charcoal);
+    color: var(--color-sand);
+    padding-block: 3.5rem 1.5rem;
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid #3a382f;
+  }
+
+  .footer-mark {
+    color: var(--color-stone);
+    margin-bottom: 0.8rem;
   }
 
   .wordmark {
     font-family: var(--font-display);
-    font-size: 1.15rem;
-    color: var(--color-ink);
-    margin-bottom: 0.3rem;
+    font-size: 1.1rem;
+    color: var(--color-stone);
+    margin: 0 0 0.3rem;
   }
 
   .tagline {
-    margin-bottom: 1.2rem;
+    margin: 0;
+    font-size: 0.85rem;
+  }
+
+  .footer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    font-size: 0.82rem;
+  }
+
+  .footer-nav a,
+  .footer-contact a {
+    text-decoration: none;
+    color: var(--color-sand);
+  }
+
+  .footer-nav a:hover,
+  .footer-contact a:hover {
+    color: var(--color-stone);
+  }
+
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    font-size: 0.82rem;
   }
 
   .meta {
-    font-size: 0.82rem;
-    margin: 0;
+    text-align: center;
+    font-size: 0.75rem;
+    margin: 1.5rem 0 0;
+    color: #8a8578;
   }
 </style>

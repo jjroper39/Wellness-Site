@@ -1,10 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import WaveMark from '../components/WaveMark.astro';
 ---
 
 <Layout title="Page not found">
   <section class="not-found">
     <div class="wrap">
+      <WaveMark size={48} class="not-found-mark" />
       <p class="eyebrow">404</p>
       <h1>We couldn't find that page</h1>
       <p>It may have moved, or the link might be out of date.</p>
@@ -17,5 +19,10 @@ import Layout from '../layouts/Layout.astro';
   .not-found {
     padding-block: 6rem;
     text-align: center;
+  }
+
+  .not-found-mark {
+    color: var(--color-ember);
+    margin: 0 auto 1.2rem;
   }
 </style>
