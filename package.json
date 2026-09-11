@@ -6,14 +6,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
-    "deploy": "npm run build && wrangler deploy",
-    "cf-types": "wrangler types"
+    "preview": "astro preview"
   },
   "dependencies": {
     "astro": "^7.3.2"
-  },
-  "devDependencies": {
-    "wrangler": "^4.131.0"
   }
 }
