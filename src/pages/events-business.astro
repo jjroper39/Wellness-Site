@@ -1,0 +1,291 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import CTAButton from '../components/CTAButton.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+import FeatureIcon from '../components/FeatureIcon.astro';
+import FullBleedCTA from '../components/FullBleedCTA.astro';
+
+const eventIdeas = [
+  { title: 'Corporate Wellness', copy: 'Give the team something more memorable.', alt: 'A relaxed corporate wellness day around a sauna and cold plunge' },
+  { title: 'Sporting Events', copy: 'Bring hot-and-cold recovery and a new experience to competitors and spectators.', alt: 'Athletes using a cold plunge for recovery after a sporting event' },
+  { title: 'Private Events', copy: 'Birthdays, celebrations, weekends away and everything in between.', alt: 'Friends gathered around a wood-fired hot tub at a private celebration' },
+  { title: 'Cold Plunge Challenges', copy: 'Create a crowd. Challenge guests, colleagues or competitors to take the plunge.', alt: 'A crowd gathered to watch a cold plunge challenge' },
+];
+
+const whyRent = [
+  { icon: 'coin', label: 'Lower Upfront Cost', copy: 'Launch your wellness offering without investing thousands in equipment from day one.' },
+  { icon: 'chart', label: 'Test Demand', copy: 'Find out what your guests actually want before committing to a permanent installation.' },
+  { icon: 'building', label: 'Create Revenue', copy: 'Build wellness packages and experiences into your existing guest offering.' },
+  { icon: 'refresh', label: 'Flexibility', copy: 'Seasonal demand? No problem. Build a rental agreement around your business.' },
+  { icon: 'life-buoy', label: 'Support', copy: "We're here to help you create an experience that works for both you and your guests." },
+];
+---
+
+<Layout
+  title="Events & Business Leasing"
+  description="Bring Onda Ritual to your event, retreat, campsite or business. Corporate wellness days, private celebrations, and flexible business leasing of saunas, cold plunges and wood-fired hot tubs."
+>
+  <Hero
+    heading="Wellness.<br />Wherever you need it."
+    copy="From one unforgettable day to an entire season. Bring Onda Ritual to your event, retreat, campsite or business."
+    imageAlt="An evening wellness event with warm firelight around a hot tub and sauna"
+    imageVariant="warm"
+  >
+    <CTAButton href="#events" variant="solid" onDark={true}>Events</CTAButton>
+    <CTAButton href="#business-leasing" onDark={true}>Business Leasing</CTAButton>
+  </Hero>
+
+  <section id="events" class="section--ivory events-section">
+    <div class="wrap">
+      <div class="editorial-block">
+        <div class="editorial-block-text reveal">
+          <p class="eyebrow">Corporate & Private Events</p>
+          <h2>Not another<br />corporate away day.</h2>
+          <p>
+            Want to bring health, wellness and a little something different
+            to your next event?
+          </p>
+          <p>We can make it happen.</p>
+          <p>
+            From corporate wellness days and sporting events to birthdays
+            and private celebrations, we create bespoke wellness packages
+            designed around your event.
+          </p>
+          <p>
+            Bring the full spa experience to your guests with our saunas,
+            cold plunge pools and wood-fired hot tubs.
+          </p>
+          <p>
+            Whether you want to create a relaxing wellness retreat for the
+            day or add a cold plunge challenge to spice things up while
+            cooling things down, we'll put together the right package for
+            you.
+          </p>
+          <p>
+            We take care of the equipment and setup, leaving you to enjoy
+            the experience.
+          </p>
+          <p class="block-statement">Your event.<br />Your people.<br />Your ritual.</p>
+          <CTAButton href="/contact/" variant="solid">Plan Your Event</CTAButton>
+        </div>
+        <div class="editorial-block-image reveal">
+          <ImagePlaceholder alt="Guests enjoying a corporate wellness event with sauna and cold plunge" variant="warm" ratio="4 / 5" />
+        </div>
+      </div>
+
+      <div class="event-ideas-grid">
+        {eventIdeas.map((idea) => (
+          <article class="event-idea-tile reveal">
+            <ImagePlaceholder alt={idea.alt} variant="cool" ratio="1 / 1" />
+            <h3>{idea.title}</h3>
+            <p>{idea.copy}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="business-leasing" class="section--dark business-section">
+    <div class="wrap">
+      <div class="editorial-block editorial-block--reverse">
+        <div class="editorial-block-text reveal">
+          <p class="eyebrow eyebrow--on-dark">Campsites, Retreats & Hospitality</p>
+          <h2>Give your guests more.</h2>
+          <p>
+            Give your guests a premium wellness experience without the cost
+            and commitment of owning it.
+          </p>
+          <p>
+            Own a campsite, retreat, holiday accommodation or hospitality
+            venue and want to add something special to your guest
+            experience?
+          </p>
+          <p>
+            Investing thousands in buying, installing and maintaining
+            wellness equipment isn't always the right answer.
+          </p>
+          <p class="block-lede">That's where we come in.</p>
+          <p>
+            We provide flexible, seasonal and longer-term rentals of
+            saunas, cold plunges and wood-fired hot tubs.
+          </p>
+          <p>
+            Create a premium wellness offering, attract new guests and add
+            another revenue stream to your business without the large
+            upfront investment or permanent installation.
+          </p>
+          <p class="block-statement block-statement--on-dark">Elevate the stay.<br />We'll bring the ritual.</p>
+          <CTAButton href="/contact/" onDark={true} variant="solid">Discuss Business Leasing</CTAButton>
+        </div>
+        <div class="editorial-block-image reveal">
+          <ImagePlaceholder alt="A boutique retreat offering a premium wellness experience to guests" variant="dark" ratio="4 / 5" />
+        </div>
+      </div>
+
+      <div class="why-rent">
+        <p class="eyebrow eyebrow--on-dark why-rent-eyebrow">Why Rent?</p>
+        <div class="why-rent-grid">
+          {whyRent.map((item) => (
+            <FeatureIcon icon={item.icon} label={item.label} onDark={true}>{item.copy}</FeatureIcon>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="try-before-you-buy" class="section--sand tbyb-section">
+    <div class="wrap">
+      <div class="editorial-block">
+        <div class="editorial-block-text reveal">
+          <p class="eyebrow">Try Before You Buy</p>
+          <h2>Got a location?<br />Got an idea?</h2>
+          <p class="block-lede">Test the business before making the big investment.</p>
+          <p>
+            Health and wellness is booming, but setting up your own sauna
+            and cold plunge venue can require a significant upfront
+            commitment.
+          </p>
+          <p>
+            Our Try Before You Buy package gives you the opportunity to
+            build and test your concept before investing in a permanent
+            setup.
+          </p>
+          <p>
+            Rent the equipment from us for an agreed period and create the
+            wellness escape you've been imagining.
+          </p>
+          <p>We can even help you get started with your website and marketing.</p>
+          <p class="block-statement">
+            You take the bookings.<br />You build the customer base.<br />You keep the profits.
+          </p>
+          <p>Test your location.</p>
+          <p>Understand demand.</p>
+          <p>Refine your concept.</p>
+          <p>
+            Build a real customer base using real-world results without
+            committing to an expensive installation from day one.
+          </p>
+          <p>And when you're ready to take the next step, we can help with that too.</p>
+          <p class="block-statement">Build it. Test it. Make it yours.</p>
+          <CTAButton href="/contact/" variant="solid">Find Out More</CTAButton>
+        </div>
+        <div class="editorial-block-image reveal">
+          <ImagePlaceholder alt="An entrepreneur testing a sauna and cold plunge concept at a chosen location" variant="stone" ratio="4 / 5" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FullBleedCTA heading="Let's create something amazing." subheading="Your event. Your guests. Your ritual." variant="dark">
+    <CTAButton href="/contact/" variant="solid" onDark={true}>Get In Touch</CTAButton>
+  </FullBleedCTA>
+</Layout>
+
+<style>
+  .editorial-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+
+  .editorial-block--reverse {
+    direction: rtl;
+  }
+
+  .editorial-block--reverse > * {
+    direction: ltr;
+  }
+
+  .editorial-block-text {
+    max-width: 32rem;
+  }
+
+  .block-lede {
+    font-weight: 600;
+  }
+
+  .block-statement {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: var(--color-ember);
+    margin: 1.6rem 0;
+  }
+
+  .block-statement--on-dark {
+    color: var(--color-sand);
+  }
+
+  .event-ideas-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 5rem;
+  }
+
+  .event-idea-tile h3 {
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.85rem;
+    margin: 1rem 0 0.4rem;
+  }
+
+  .event-idea-tile p {
+    font-size: 0.88rem;
+    color: var(--color-ink-soft);
+    margin: 0;
+  }
+
+  .why-rent {
+    margin-top: 5rem;
+    border-top: 1px solid var(--color-line-dark);
+    padding-top: 3rem;
+  }
+
+  .why-rent-eyebrow {
+    text-align: center;
+    display: block;
+  }
+
+  .why-rent-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .why-rent-grid :global(.feature-icon) {
+    max-width: none;
+    margin-inline: auto;
+  }
+
+  .why-rent-grid :global(.feature-icon-svg) {
+    margin-inline: auto;
+  }
+
+  @media (max-width: 900px) {
+    .editorial-block,
+    .editorial-block--reverse {
+      grid-template-columns: 1fr;
+      direction: ltr;
+      gap: 2.5rem;
+    }
+
+    .editorial-block-image {
+      order: -1;
+    }
+
+    .event-ideas-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .why-rent-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

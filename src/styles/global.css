@@ -5,14 +5,20 @@
   --color-charcoal: #1f1f1f;
   --color-ember: #a05a3a;
 
+  --color-ivory: #f6f3ee;
   --color-bg: var(--color-stone);
   --color-ink: var(--color-charcoal);
   --color-ink-soft: #4a463f;
   --color-line: #d6d0c4;
+  --color-line-dark: rgba(232, 228, 221, 0.22);
 
   --font-display: "Playfair Display", Georgia, serif;
   --font-body: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  --max-width: 75rem;
+
+  --max-width: 78rem;
+  --gutter: 1.5rem;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * {
@@ -21,6 +27,12 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
@@ -42,12 +54,12 @@ a {
   color: inherit;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   font-family: var(--font-display);
-  font-weight: 600;
-  line-height: 1.15;
+  font-weight: 500;
+  line-height: 1.12;
   margin: 0 0 0.6em;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.005em;
 }
 
 p {
@@ -57,55 +69,248 @@ p {
 .wrap {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 var(--gutter);
 }
 
-.button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.95rem 2.1rem;
-  background: var(--color-ember);
-  color: var(--color-stone);
-  text-decoration: none;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  border: 1px solid var(--color-ember);
+.wrap--narrow {
+  max-width: 46rem;
 }
 
-.button:hover {
-  opacity: 0.88;
-}
-
-.button.button--outline {
-  background: transparent;
-  color: inherit;
-  border: 1px solid currentColor;
-}
+/* ---------- micro-labels ---------- */
 
 .eyebrow {
+  display: inline-block;
   text-transform: uppercase;
-  letter-spacing: 0.22em;
-  font-size: 0.75rem;
-  color: var(--color-ember);
+  letter-spacing: 0.2em;
+  font-size: 0.72rem;
   font-weight: 600;
+  color: var(--color-ember);
+  margin: 0 0 1rem;
 }
 
-section {
-  padding: 5.5rem 0;
+.eyebrow--on-dark {
+  color: var(--color-sand);
 }
+
+.beats {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.75rem;
+  color: var(--color-ink-soft);
+}
+
+.beats--on-dark {
+  color: var(--color-sand);
+}
+
+/* ---------- buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.9rem;
+  background: transparent;
+  color: var(--color-ink);
+  text-decoration: none;
+  border: 1px solid var(--color-ink);
+  border-radius: 2px;
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  transition: background-color 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease);
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--color-ink);
+  color: var(--color-stone);
+}
+
+.btn--solid {
+  background: var(--color-ink);
+  color: var(--color-stone);
+}
+
+.btn--solid:hover {
+  background: transparent;
+  color: var(--color-ink);
+}
+
+.btn--ember {
+  border-color: var(--color-ember);
+  color: var(--color-ember);
+}
+
+.btn--ember:hover {
+  background: var(--color-ember);
+  color: var(--color-ivory);
+}
+
+.btn--on-dark {
+  border-color: var(--color-stone);
+  color: var(--color-stone);
+}
+
+.btn--on-dark:hover {
+  background: var(--color-stone);
+  color: var(--color-charcoal);
+}
+
+.btn--on-dark.btn--solid {
+  background: var(--color-stone);
+  color: var(--color-charcoal);
+}
+
+.btn--on-dark.btn--solid:hover {
+  background: transparent;
+  color: var(--color-stone);
+}
+
+.btn-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ---------- sections ---------- */
+
+section {
+  padding-block: 6rem;
+}
+
+.section--tight {
+  padding-block: 4rem;
+}
+
+.section--dark {
+  background: var(--color-charcoal);
+  color: var(--color-stone);
+}
+
+.section--olive {
+  background: var(--color-olive);
+  color: var(--color-stone);
+}
+
+.section--sand {
+  background: var(--color-sand);
+  color: var(--color-charcoal);
+}
+
+.section--ivory {
+  background: var(--color-ivory);
+}
+
+.section-lede {
+  max-width: 34rem;
+  color: var(--color-ink-soft);
+  font-size: 1.02rem;
+}
+
+.section--dark .section-lede,
+.section--olive .section-lede {
+  color: #d9d6cc;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-line);
+  margin: 0;
+}
+
+.divider--on-dark {
+  border-top-color: var(--color-line-dark);
+}
+
+/* ---------- reveal motion ---------- */
+
+/* Reveal-on-scroll is opt-in: elements stay fully visible unless the `js`
+   class lands on <html> (confirming JS ran) and reduced motion isn't set.
+   This keeps content visible with JS disabled, for crawlers, and for any
+   tooling that captures the page without scrolling it. */
+.js:not(.reduced-motion) .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+
+.js:not(.reduced-motion) .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- placeholder photography ---------- */
+
+.img-block {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-charcoal);
+}
+
+.img-block img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 14rem;
+  display: flex;
+  align-items: flex-end;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"),
+    var(--ph-gradient);
+}
+
+.img-placeholder--warm {
+  --ph-gradient: linear-gradient(155deg, #6b4530 0%, #a05a3a 45%, #55624f 100%);
+}
+
+.img-placeholder--cool {
+  --ph-gradient: linear-gradient(155deg, #1f1f1f 0%, #3a4235 55%, #55624f 100%);
+}
+
+.img-placeholder--dark {
+  --ph-gradient: linear-gradient(155deg, #14140f 0%, #1f1f1f 60%, #2c2a22 100%);
+}
+
+.img-placeholder--stone {
+  --ph-gradient: linear-gradient(155deg, #c9b89f 0%, #d9c9ab 55%, #e8e4dd 100%);
+}
+
+.img-placeholder-label {
+  width: 100%;
+  padding: 0.9rem 1.1rem;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+  color: #f1ede4;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.img-placeholder--stone .img-placeholder-label {
+  background: linear-gradient(0deg, rgba(31, 31, 31, 0.35), rgba(31, 31, 31, 0));
+  color: #2c2620;
+}
+
+/* ---------- responsive ---------- */
 
 @media (max-width: 640px) {
   section {
-    padding: 3.5rem 0;
+    padding-block: 3.75rem;
   }
 
-  .button {
-    padding: 0.85rem 1.7rem;
-    font-size: 0.78rem;
+  .section--tight {
+    padding-block: 3rem;
+  }
+
+  .btn {
+    padding: 0.85rem 1.5rem;
+    font-size: 0.7rem;
   }
 }

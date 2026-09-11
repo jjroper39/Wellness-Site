@@ -1,0 +1,60 @@
+---
+interface Item {
+  quote: string;
+  name: string;
+}
+
+interface Props {
+  items?: Item[];
+}
+
+const {
+  items = [
+    { quote: 'Add customer testimonial here.', name: 'Customer name / location' },
+    { quote: 'Add customer testimonial here.', name: 'Customer name / location' },
+  ],
+} = Astro.props;
+---
+
+<div class="testimonial-strip">
+  {items.map((item) => (
+    <figure class="testimonial-card">
+      <blockquote>{item.quote}</blockquote>
+      <figcaption>{item.name}</figcaption>
+    </figure>
+  ))}
+</div>
+
+<style>
+  .testimonial-strip {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 0.5rem;
+  }
+
+  .testimonial-card {
+    flex: 0 0 min(24rem, 85%);
+    scroll-snap-align: start;
+    border: 1px solid var(--color-line);
+    padding: 2.25rem;
+    margin: 0;
+    background: var(--color-ivory);
+  }
+
+  .testimonial-card blockquote {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-style: italic;
+    margin: 0 0 1.2rem;
+    color: var(--color-ink);
+  }
+
+  .testimonial-card figcaption {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.72rem;
+    color: var(--color-ink-soft);
+  }
+</style>

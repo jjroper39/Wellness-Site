@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import EnquiryForm from '../components/EnquiryForm.astro';
+---
+
+<Layout
+  title="Find Your Ritual"
+  description="Tell us what you have in mind and we'll help put the right sauna, cold plunge or wood-fired hot tub setup together for your home, event or business."
+>
+  <Hero
+    heading="Find your ritual."
+    imageAlt="A calm sauna and cold plunge setting ready for a new booking"
+    imageVariant="cool"
+    height="tall"
+  />
+
+  <section class="section--ivory contact-section">
+    <div class="wrap">
+      <p class="contact-intro">
+        Tell us what you have in mind and we'll help put the right setup
+        together.
+      </p>
+      <EnquiryForm />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-intro {
+    max-width: 34rem;
+    font-size: 1.05rem;
+    color: var(--color-ink-soft);
+    margin-bottom: 3rem;
+  }
+</style>

@@ -1,0 +1,58 @@
+---
+import ImagePlaceholder from './ImagePlaceholder.astro';
+
+interface Props {
+  imageAlt: string;
+  imageSrc?: string;
+  imageVariant?: 'warm' | 'cool' | 'dark' | 'stone';
+  reverse?: boolean;
+  class?: string;
+}
+
+const { imageAlt, imageSrc, imageVariant = 'warm', reverse = false, class: className = '' } = Astro.props;
+---
+
+<div class={`editorial-split ${reverse ? 'editorial-split--reverse' : ''} ${className}`}>
+  <div class="editorial-split-content reveal">
+    <slot />
+  </div>
+  <div class="editorial-split-image reveal">
+    <ImagePlaceholder alt={imageAlt} src={imageSrc} variant={imageVariant} ratio="5 / 6" />
+  </div>
+</div>
+
+<style>
+  .editorial-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+
+  .editorial-split--reverse {
+    direction: rtl;
+  }
+
+  .editorial-split--reverse > * {
+    direction: ltr;
+  }
+
+  .editorial-split-content {
+    max-width: 30rem;
+  }
+
+  @media (max-width: 860px) {
+    .editorial-split {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .editorial-split--reverse {
+      direction: ltr;
+    }
+
+    .editorial-split-image {
+      order: -1;
+    }
+  }
+</style>

@@ -1,0 +1,55 @@
+---
+import WaveMark from './WaveMark.astro';
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  subheading?: string;
+  variant?: 'dark' | 'olive';
+  showMark?: boolean;
+}
+
+const { eyebrow, heading, subheading, variant = 'dark', showMark = true } = Astro.props;
+---
+
+<section class={`full-bleed-cta section--${variant}`}>
+  <div class="wrap full-bleed-cta-inner reveal">
+    {showMark && <WaveMark size={44} class="full-bleed-cta-mark" />}
+    {eyebrow && <p class="beats beats--on-dark">{eyebrow}</p>}
+    <h2 set:html={heading} />
+    {subheading && <p class="full-bleed-cta-sub">{subheading}</p>}
+    <div class="btn-row full-bleed-cta-actions">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .full-bleed-cta-inner {
+    text-align: center;
+    max-width: 38rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .full-bleed-cta-inner :global(.full-bleed-cta-mark) {
+    color: var(--color-sand);
+    margin-bottom: 0.6rem;
+  }
+
+  .full-bleed-cta h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  .full-bleed-cta-sub {
+    color: var(--color-sand);
+  }
+
+  .full-bleed-cta-actions {
+    justify-content: center;
+    margin-top: 1.2rem;
+  }
+</style>

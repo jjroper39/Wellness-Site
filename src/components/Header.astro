@@ -1,49 +1,95 @@
 ---
 import WaveMark from './WaveMark.astro';
+import CTAButton from './CTAButton.astro';
+import Icon from './Icon.astro';
 
 const navItems = [
-  { href: '#contact', label: 'Enquire' },
-  { href: '#benefits', label: 'Benefits' },
-  { href: '#packages', label: 'Packages' },
-  { href: '#events', label: 'Events and Business Leasing' },
+  { href: '/at-home/', label: 'At Home' },
+  { href: '/benefits/', label: 'Benefits' },
+  { href: '/events-business/', label: 'Events & Business' },
+  { href: '/about/', label: 'About' },
+  { href: '/contact/', label: 'Contact' },
 ];
+
+const currentPath = Astro.url.pathname;
 ---
 
-<header class="site-header">
+<header class="site-header" id="site-header">
   <div class="wrap header-inner">
-    <a href="#home" class="wordmark">
-      <WaveMark size={30} />
+    <a href="/" class="wordmark">
+      <WaveMark size={28} />
       <span class="wordmark-text">
         <span class="wordmark-onda">Onda</span>
         <span class="wordmark-ritual">Ritual</span>
       </span>
     </a>
-    <nav aria-label="Primary">
+
+    <nav class="nav-desktop" aria-label="Primary">
       <ul>
         {navItems.map((item) => (
           <li>
-            <a href={item.href}>{item.label}</a>
+            <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>{item.label}</a>
           </li>
         ))}
       </ul>
+    </nav>
+
+    <div class="header-actions">
+      <CTAButton href="/contact/" variant="outline" onDark={true} class="header-cta">Find Your Ritual</CTAButton>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+        <Icon name="menu" size={24} />
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobile-nav">
+    <div class="mobile-nav-top wrap">
+      <a href="/" class="wordmark">
+        <WaveMark size={26} />
+        <span class="wordmark-text">
+          <span class="wordmark-onda">Onda</span>
+          <span class="wordmark-ritual">Ritual</span>
+        </span>
+      </a>
+      <button class="nav-toggle" id="nav-close" aria-label="Close menu">
+        <Icon name="close" size={24} />
+      </button>
+    </div>
+    <nav class="wrap" aria-label="Mobile">
+      <ul>
+        {navItems.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+      <CTAButton href="/contact/" variant="solid" class="mobile-nav-cta">Find Your Ritual</CTAButton>
     </nav>
   </div>
 </header>
 
 <style>
   .site-header {
-    background: var(--color-charcoal);
-    color: var(--color-stone);
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 10;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: transparent;
+    color: var(--color-stone);
+    transition: background-color 0.35s var(--ease), border-color 0.35s var(--ease), color 0.35s var(--ease);
+    border-bottom: 1px solid transparent;
+  }
+
+  .site-header.is-scrolled {
+    background: rgba(31, 31, 31, 0.92);
+    border-bottom-color: rgba(232, 228, 221, 0.12);
+    backdrop-filter: blur(6px);
   }
 
   .header-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-block: 1rem;
+    padding-block: 1.3rem;
   }
 
   .wordmark {
@@ -51,7 +97,7 @@ const navItems = [
     align-items: center;
     gap: 0.7rem;
     text-decoration: none;
-    color: var(--color-stone);
+    color: inherit;
   }
 
   .wordmark-text {
@@ -62,50 +108,152 @@ const navItems = [
   }
 
   .wordmark-onda {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     letter-spacing: 0.04em;
   }
 
   .wordmark-ritual {
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     letter-spacing: 0.32em;
     color: var(--color-sand);
   }
 
-  nav ul {
+  .nav-desktop ul {
     list-style: none;
     display: flex;
-    gap: 2rem;
+    gap: 2.1rem;
     margin: 0;
     padding: 0;
   }
 
-  nav a {
+  .nav-desktop a {
     text-decoration: none;
-    font-size: 0.78rem;
+    font-size: 0.74rem;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     color: var(--color-sand);
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
   }
 
-  nav a:hover {
+  .nav-desktop a:hover,
+  .nav-desktop a[aria-current='page'] {
     color: var(--color-stone);
+    border-bottom-color: var(--color-ember);
   }
 
-  @media (max-width: 720px) {
-    .header-inner {
-      flex-direction: column;
-      align-items: center;
-      gap: 0.9rem;
-      padding-block: 1.2rem;
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .header-actions :global(.header-cta) {
+    font-size: 0.68rem;
+    padding: 0.7rem 1.3rem;
+  }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 0.2rem;
+  }
+
+  .mobile-nav {
+    position: fixed;
+    inset: 0;
+    background: var(--color-charcoal);
+    color: var(--color-stone);
+    z-index: 60;
+    transform: translateX(100%);
+    transition: transform 0.4s var(--ease);
+    overflow-y: auto;
+  }
+
+  .mobile-nav.is-open {
+    transform: translateX(0);
+  }
+
+  .mobile-nav-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 1.3rem;
+  }
+
+  .mobile-nav nav {
+    padding-top: 3rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-nav ul {
+    list-style: none;
+    margin: 0 0 2.5rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  .mobile-nav a {
+    text-decoration: none;
+    color: var(--color-stone);
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+  }
+
+  .mobile-nav :global(.mobile-nav-cta) {
+    align-self: flex-start;
+  }
+
+  @media (max-width: 900px) {
+    .nav-desktop,
+    .header-actions :global(.header-cta) {
+      display: none;
     }
-    nav ul {
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.9rem 1.2rem;
-    }
-    nav a {
-      font-size: 0.68rem;
+
+    .nav-toggle {
+      display: block;
     }
   }
 </style>
+
+<script>
+  const header = document.getElementById('site-header');
+  const toggle = document.getElementById('nav-toggle');
+  const closeBtn = document.getElementById('nav-close');
+  const mobileNav = document.getElementById('mobile-nav');
+
+  const onScroll = () => {
+    if (!header) return;
+    if (window.scrollY > 60) {
+      header.classList.add('is-scrolled');
+    } else {
+      header.classList.remove('is-scrolled');
+    }
+  };
+
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const openNav = () => {
+    mobileNav?.classList.add('is-open');
+    toggle?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeNav = () => {
+    mobileNav?.classList.remove('is-open');
+    toggle?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  };
+
+  toggle?.addEventListener('click', openNav);
+  closeBtn?.addEventListener('click', closeNav);
+  mobileNav?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeNav));
+</script>

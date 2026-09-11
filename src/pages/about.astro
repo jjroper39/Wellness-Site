@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import CTAButton from '../components/CTAButton.astro';
+import EditorialSplit from '../components/EditorialSplit.astro';
+import FullBleedCTA from '../components/FullBleedCTA.astro';
+---
+
+<Layout
+  title="About"
+  description="Onda Ritual brings premium sauna, cold plunge and wood-fired hot tub experiences to homes, events and businesses across the UK. This is why we started."
+>
+  <Hero
+    heading="Onda means wave."
+    copy="A reminder that rest moves in cycles, not straight lines."
+    imageAlt="A quiet lake at dawn, still water meeting distant mountains"
+    imageVariant="cool"
+    height="tall"
+  />
+
+  <section class="section--ivory">
+    <div class="wrap">
+      <EditorialSplit imageAlt="Founders testing an early wood-fired hot tub setup in a garden" imageVariant="warm">
+        <p class="eyebrow">Our Story</p>
+        <h2>Why we started<br />Onda Ritual.</h2>
+        <p>
+          We built Onda Ritual around one idea: real rest takes time, and
+          the ritual of moving between heat and cold has lasted for
+          centuries because it works.
+        </p>
+        <p>
+          Owning a sauna, a cold plunge and a wood-fired hot tub outright is
+          a big commitment — in cost, space and upkeep. We wanted to make
+          that experience accessible without asking people to take on all
+          three.
+        </p>
+        <p>
+          So we deliver it instead. To a garden, an event, a retreat, a
+          business. Set up properly, explained simply, and collected again
+          when you're done.
+        </p>
+      </EditorialSplit>
+    </div>
+  </section>
+
+  <section class="section--sand">
+    <div class="wrap values-inner">
+      <p class="eyebrow">What We Believe</p>
+      <h2>Unhurried, on purpose.</h2>
+      <div class="values-grid">
+        <div class="reveal">
+          <h3>Unhurried by design</h3>
+          <p>Every setup is built around time to actually use it, not rush through it.</p>
+        </div>
+        <div class="reveal">
+          <h3>Honest, upfront pricing</h3>
+          <p>No memberships, no hidden fees — just a clear price for the ritual you choose.</p>
+        </div>
+        <div class="reveal">
+          <h3>A small, hands-on team</h3>
+          <p>The people who deliver and set up your equipment know it inside out.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FullBleedCTA heading="Natural rituals.<br />Brighter days." variant="olive">
+    <CTAButton href="/contact/" variant="solid" onDark={true}>Find Your Ritual</CTAButton>
+  </FullBleedCTA>
+</Layout>
+
+<style>
+  .values-inner h2 {
+    max-width: 26rem;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+    border-top: 1px solid rgba(31, 31, 31, 0.15);
+    padding-top: 2.5rem;
+  }
+
+  .values-grid h3 {
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.88rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .values-grid p {
+    font-size: 0.92rem;
+    color: #4a463f;
+  }
+
+  @media (max-width: 860px) {
+    .values-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

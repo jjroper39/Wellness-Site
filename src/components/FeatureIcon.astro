@@ -1,0 +1,47 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  icon: string;
+  label: string;
+  onDark?: boolean;
+  class?: string;
+}
+
+const { icon, label, onDark = false, class: className = '' } = Astro.props;
+---
+
+<div class={`feature-icon ${onDark ? 'feature-icon--on-dark' : ''} ${className}`}>
+  <Icon name={icon as any} size={26} class="feature-icon-svg" />
+  <h3>{label}</h3>
+  <p><slot /></p>
+</div>
+
+<style>
+  .feature-icon {
+    max-width: 18rem;
+  }
+
+  .feature-icon :global(.feature-icon-svg) {
+    color: var(--color-ember);
+    margin-bottom: 1rem;
+  }
+
+  .feature-icon h3 {
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.88rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-icon p {
+    font-size: 0.92rem;
+    color: var(--color-ink-soft);
+    margin: 0;
+  }
+
+  .feature-icon--on-dark p {
+    color: #d9d6cc;
+  }
+</style>

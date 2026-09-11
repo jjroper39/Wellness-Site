@@ -1,641 +1,226 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import WaveMark from '../components/WaveMark.astro';
+import Hero from '../components/Hero.astro';
+import CTAButton from '../components/CTAButton.astro';
+import EditorialSplit from '../components/EditorialSplit.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import FullBleedCTA from '../components/FullBleedCTA.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 
-const experiences = [
+const elements = [
   {
-    name: 'Sauna',
-    beats: 'Sweat / Reset',
-    summary:
-      'Traditional dry heat to open the pores, ease tension, and quiet a busy mind.',
-    icon: 'M12 2c0 4-4 5-4 9a4 4 0 0 0 8 0c0-4-4-5-4-9Z M8 20h8 M9 20c0-2 1-3 1-5 M15 20c0-2-1-3-1-5',
+    eyebrow: 'Heat',
+    heading: 'Slow down. Switch off.',
+    copy: 'Step into the warmth of your own sauna or wood-fired hot tub. A space to disconnect from everything else and reconnect with yourself and the people around you.',
+    cta: 'Explore Heat',
+    href: '/benefits/#sauna',
+    variant: 'warm' as const,
+    alt: 'Steam rising inside a warm timber sauna interior',
   },
   {
-    name: 'Wood-Fired Hot Tub',
-    beats: 'Connect / Unwind',
-    summary:
-      'Slow-heated water under an open sky — built for long soaks and good company.',
-    icon: 'M9 3.5c0 1.1-1.4 1.1-1.4 2.3S9 7.1 9 8.2M12.5 3c0 1.1-1.4 1.1-1.4 2.3s1.4 1.1 1.4 2.3M16 3.5c0 1.1-1.4 1.1-1.4 2.3s1.4 1.1 1.4 2.3M4 20v-1a8 8 0 0 1 16 0v1M3 20h18',
+    eyebrow: 'Cold',
+    heading: 'Wake up. Reset.',
+    copy: "There's nothing quite like it. Cold water. Deep breath. That moment of hesitation followed by the feeling that keeps people coming back.",
+    cta: 'Explore Cold',
+    href: '/benefits/#cold-plunge',
+    variant: 'cool' as const,
+    alt: 'Hands touching the rippling surface of cold plunge water',
   },
   {
-    name: 'Cold Plunge',
-    beats: 'Awaken / Renew',
-    summary:
-      'A short, sharp reset that sharpens focus and trains the body to recover faster.',
-    icon: 'M12 2v20M4.2 7l15.6 10M19.8 7L4.2 17',
-  },
-];
-
-const values = [
-  { label: 'Elements', copy: 'Fire, water, and cold air — nothing synthetic, nothing rushed.' },
-  { label: 'People', copy: 'Delivered and set up by a small, hands-on team who know the kit.' },
-  { label: 'Places', copy: 'Your garden, your event, your view — wellness comes to you.' },
-  { label: 'Better Living', copy: 'A rhythm of heat and cold built into everyday life.' },
-];
-
-const benefits = [
-  'Improved circulation and cardiovascular health',
-  'Faster muscle recovery after training',
-  'Lower stress and a calmer nervous system',
-  'Deeper, more restorative sleep',
-  'Sharper focus and mental clarity',
-  'A stronger immune response over time',
-];
-
-const packages = [
-  {
-    name: 'Weekend Ritual',
-    price: 'From £150',
-    summary: 'One unit — sauna, hot tub, or cold plunge — delivered Friday and collected Monday.',
-    features: ['Full delivery & setup', 'One wellness unit', 'Simple how-to-use guide'],
-  },
-  {
-    name: 'Full Ritual',
-    price: 'From £420',
-    summary: 'The complete circuit: sauna, wood-fired hot tub, and cold plunge for the whole weekend.',
-    features: ['Full delivery & setup', 'All three units', 'On-site orientation'],
-    featured: true,
-  },
-  {
-    name: 'Standing Ritual',
-    price: 'Price on request',
-    summary: 'An ongoing rental for your home or venue, checked in on and maintained by our team.',
-    features: ['Monthly rolling rental', 'Regular maintenance visits', 'Swap or upgrade any time'],
-  },
-];
-
-const leasingOffers = [
-  {
-    title: 'Corporate Events',
-    lede: 'Want to bring health, wellness and a little something different to your next event? We can make it happen.',
-    body: [
-      'From corporate wellness days and sporting events to birthdays and private celebrations, we create bespoke wellness packages designed around your event.',
-      "Bring the full spa experience to your guests with our saunas, cold plunge pools and wood-fired hot tubs. Whether you want to create a relaxing wellness retreat for the day or add a cold plunge challenge to spice things up while cooling things down, we'll put together the right package for you.",
-      'We take care of the equipment and setup, leaving you to enjoy the experience.',
-    ],
-    closing: 'Your event. Your people. Your ritual.',
-  },
-  {
-    title: 'Campsites, Retreats & Hospitality',
-    lede: 'Give your guests a premium wellness experience without the cost and commitment of owning it.',
-    body: [
-      "Own a campsite, retreat, holiday accommodation or hospitality venue and want to add something special to your guest experience? Investing thousands in buying, installing and maintaining wellness equipment isn't always the right answer.",
-      "That's where we come in.",
-      'We work with businesses across the country to provide flexible, seasonal and longer-term rentals of our saunas, cold plunges and wood-fired hot tubs.',
-      'Create a premium wellness offering, attract new guests and add another revenue stream to your business without the large upfront investment or permanent installation.',
-    ],
-    closing: "Elevate the stay. We'll bring the ritual.",
-  },
-  {
-    title: 'Try Before You Buy',
-    lede: 'Thinking about starting your own sauna and cold plunge business? Test the idea before making the big investment.',
-    body: [
-      "Health and wellness is booming, but setting up your own hot and cold therapy venue can require a significant upfront commitment. Our Try Before You Buy package gives you the opportunity to build and test your concept before investing in a permanent setup.",
-      "Rent the equipment from us for an agreed period and create the wellness escape you've been imagining. We can even help you get started with your website and marketing.",
-    ],
-    highlightLine: {
-      lead: 'You take the bookings. You build your customer base. ',
-      strong: 'You keep the profits.',
-    },
-    bodyAfter: [
-      "It's an opportunity to test your location, understand demand and refine your concept using real customers and real-world results, without committing to an expensive installation from day one.",
-      "And when you're ready to take the next step, we can help with that too.",
-    ],
-    closing: 'Build it. Test it. Make it yours.',
+    eyebrow: 'Restore',
+    heading: 'Find your balance.',
+    copy: "The magic isn't simply hot or cold. It's the ritual of moving between the two. Heat. Cold. Rest. Then do it all over again.",
+    cta: 'Discover the Benefits',
+    href: '/benefits/',
+    variant: 'dark' as const,
+    alt: 'A quiet garden wellness space at dusk, softly lit',
   },
 ];
 ---
 
 <Layout
-  title="Home"
-  description="Onda Ritual delivers premium saunas, wood-fired hot tubs, and cold plunge experiences wherever you are. Natural rituals, brighter days."
+  title="Sauna, Cold Plunge & Wood-Fired Hot Tub Rentals"
+  description="Premium sauna, cold plunge and wood-fired hot tub rentals for homes, events, retreats and businesses. Your ritual, delivered."
 >
-  <section id="home" class="hero">
-    <div class="wrap hero-inner">
-      <WaveMark size={64} class="hero-mark" />
-      <p class="hero-beats">Heat &middot; Cold &middot; Restore</p>
-      <h1>Natural rituals.<br />Brighter days.</h1>
-      <p class="hero-copy">
-        Onda Ritual brings premium saunas, wood-fired hot tubs, and cold
-        plunge experiences to your home, garden, or event — outdoor living
-        built for wellness, relaxation, and recovery.
-      </p>
-      <div class="hero-actions">
-        <a class="button" href="#experiences">Explore experiences</a>
-        <a class="button button--outline" href="#contact">Get a quote</a>
-      </div>
-    </div>
-  </section>
+  <Hero
+    heading="Your ritual.<br />Delivered."
+    copy="Saunas, cold plunges and wood-fired hot tubs, delivered to your home, event or business. Create your own space to switch off, reconnect and feel good — without the commitment of buying your own."
+    imageAlt="A wood-fired hot tub and sauna set in a premium garden at dusk, steam rising into cold air"
+    imageVariant="dark"
+    eyebrow="Heat / Cold / Restore"
+    showMark={true}
+  >
+    <CTAButton href="/at-home/" variant="solid" onDark={true}>Explore At-Home Rentals</CTAButton>
+    <CTAButton href="/events-business/" onDark={true}>Events & Business</CTAButton>
+  </Hero>
 
-  <section class="statement">
-    <div class="wrap statement-inner">
-      <p class="statement-line">More than a plunge.</p>
-      <p class="statement-line statement-line--accent">A ritual for a brighter you.</p>
-    </div>
-  </section>
-
-  <section id="experiences" class="experiences">
+  <section class="section--ivory intro-section">
     <div class="wrap">
-      <p class="eyebrow">Experiences</p>
-      <h2>Wellness, delivered</h2>
-      <p class="section-intro">
-        Three rituals, one philosophy: real heat, real cold, and time to
-        notice the difference.
-      </p>
-      <div class="experience-grid">
-        {experiences.map((exp) => (
-          <article class="experience-card">
-            <svg
-              class="experience-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d={exp.icon} />
-            </svg>
-            <h3>{exp.name}</h3>
-            <p class="experience-beats">{exp.beats}</p>
-            <p>{exp.summary}</p>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section id="packages" class="packages">
-    <div class="wrap">
-      <p class="eyebrow">Packages</p>
-      <h2>Choose your ritual</h2>
-      <p class="section-intro">
-        Simple, upfront pricing. Every package includes delivery, full
-        setup, and collection — you just show up.
-      </p>
-      <div class="package-grid">
-        {packages.map((pkg) => (
-          <article class={`package-card ${pkg.featured ? 'package-card--featured' : ''}`}>
-            {pkg.featured && <p class="package-badge">Most popular</p>}
-            <h3>{pkg.name}</h3>
-            <p class="package-price">{pkg.price}</p>
-            <p class="package-summary">{pkg.summary}</p>
-            <ul class="package-features">
-              {pkg.features.map((f) => (
-                <li>{f}</li>
-              ))}
-            </ul>
-            <a class="button button--outline" href="#contact">Enquire</a>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section id="wellness-anywhere" class="wellness-anywhere">
-    <div class="wrap wellness-inner">
-      <p class="eyebrow">Wellness Anywhere</p>
-      <h2>Saunas, wood-fired hot tubs, and cold plunges — delivered for a healthier, happier you.</h2>
-      <p class="section-intro">
-        We bring premium outdoor wellness kit to where you already are:
-        home, a private event, a retreat, a venue. Full setup, full
-        guidance, and everything taken care of.
-      </p>
-      <div class="values-grid">
-        {values.map((v) => (
-          <div class="value-item">
-            <h3>{v.label}</h3>
-            <p>{v.copy}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section id="events" class="events">
-    <div class="wrap">
-      <p class="eyebrow">Events and Business Leasing</p>
-      <h2>Bring Onda Ritual to your event or business</h2>
-      <div class="offer-list">
-        {leasingOffers.map((offer) => (
-          <article class="offer-card">
-            <h3>{offer.title}</h3>
-            <p class="offer-lede">{offer.lede}</p>
-            {offer.body.map((p) => (
-              <p>{p}</p>
-            ))}
-            {offer.highlightLine && (
-              <p>
-                {offer.highlightLine.lead}
-                <strong>{offer.highlightLine.strong}</strong>
-              </p>
-            )}
-            {offer.bodyAfter && offer.bodyAfter.map((p) => (
-              <p>{p}</p>
-            ))}
-            <p class="offer-closing">{offer.closing}</p>
-            <a class="button button--outline" href="#contact">Enquire</a>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section id="benefits" class="benefits">
-    <div class="wrap benefits-inner">
-      <div class="benefits-copy">
-        <p class="eyebrow">Why it works</p>
-        <h2>Good circulation. Brighter days.</h2>
+      <EditorialSplit imageAlt="Close detail of timber sauna bench and folded linen towels" imageVariant="stone">
+        <h2>More than a plunge.<br />More than a sauna.</h2>
+        <p class="intro-italic">It's a ritual.</p>
+        <p>Hot. Cold. Rest. Repeat.</p>
         <p>
-          Alternating heat and cold is one of the oldest wellness practices
-          in the world — and one of the best studied. A single session can
-          leave you calmer, sharper, and steadier for hours after.
+          At Onda Ritual, we make premium wellness experiences accessible
+          without the cost or commitment of owning them.
         </p>
-        <a class="button" href="#contact">Book a ritual</a>
-      </div>
-      <ul class="benefits-list">
-        {benefits.map((b) => (
-          <li>{b}</li>
-        ))}
-      </ul>
+        <p>
+          From a cold plunge in your garden to a complete sauna and hot tub
+          setup, we deliver everything you need to create your own private
+          wellness escape.
+        </p>
+        <p>A weekend. A month. A season.</p>
+        <p class="intro-bold">You choose the ritual. We'll bring it to you.</p>
+        <CTAButton href="/about/">Discover Onda Ritual</CTAButton>
+      </EditorialSplit>
     </div>
   </section>
 
-  <section id="contact" class="cta">
-    <div class="wrap cta-inner">
-      <WaveMark size={48} class="cta-mark" />
-      <h2>Ready to bring wellness home?</h2>
-      <p>
-        Tell us about your space and what you're after, and we'll put
-        together a quote — for a single session or a standing ritual.
-      </p>
-      <div class="cta-actions">
-        <a class="button" href="mailto:hello@ondaritual.co.uk">hello@ondaritual.co.uk</a>
-        <a class="button button--outline" href="tel:+441234567890">+44 (0) 1234 567 890</a>
+  <section class="section--dark elements-section">
+    <div class="wrap">
+      <SectionHeading heading="The Three Elements" align="center" onDark={true} />
+      <div class="elements-grid">
+        {elements.map((el) => (
+          <article class="element-card reveal">
+            <ImagePlaceholder alt={el.alt} variant={el.variant} ratio="3 / 4" />
+            <div class="element-card-body">
+              <p class="eyebrow eyebrow--on-dark">{el.eyebrow}</p>
+              <h3>{el.heading}</h3>
+              <p>{el.copy}</p>
+              <CTAButton href={el.href} onDark={true}>{el.cta}</CTAButton>
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   </section>
+
+  <section class="section--ivory">
+    <div class="wrap">
+      <EditorialSplit
+        imageAlt="A private garden sauna and cold plunge just steps from a back door"
+        imageVariant="warm"
+        reverse={true}
+      >
+        <h2>Your own wellness escape.<br />Just outside your door.</h2>
+        <p>Why travel to a spa when the spa can come to you?</p>
+        <p>
+          Rent our premium saunas, cold plunges and wood-fired hot tubs for
+          your home, holiday or special occasion.
+        </p>
+        <p>
+          From weekend escapes to longer-term rentals, we'll deliver and
+          set everything up so all you need to do is step outside.
+        </p>
+        <CTAButton href="/at-home/" variant="solid">Explore At-Home Rentals</CTAButton>
+      </EditorialSplit>
+    </div>
+  </section>
+
+  <section class="section--sand events-business-section">
+    <div class="wrap events-business-grid">
+      <article class="events-business-panel reveal">
+        <ImagePlaceholder alt="Colleagues gathered around a hot tub at a corporate wellness day" variant="warm" ratio="4 / 3" />
+        <p class="eyebrow">Events</p>
+        <h2>Bring something different.</h2>
+        <p>Corporate wellness day? Birthday? Sporting event? Retreat?</p>
+        <p>Turn your event into an experience people actually remember.</p>
+        <p>
+          Choose from individual products or let us create a complete
+          hot-and-cold wellness experience for your guests.
+        </p>
+        <p class="panel-statement">Your event. Your people. Your ritual.</p>
+        <CTAButton href="/events-business/#events" variant="solid">Explore Event Packages</CTAButton>
+      </article>
+
+      <article class="events-business-panel reveal">
+        <ImagePlaceholder alt="A boutique retreat garden with a wood-fired hot tub for guests" variant="cool" ratio="4 / 3" />
+        <p class="eyebrow">Business</p>
+        <h2>Wellness without the big investment.</h2>
+        <p>
+          Add a premium wellness experience to your campsite, retreat,
+          holiday accommodation or hospitality business without spending
+          thousands on purchasing and installing equipment.
+        </p>
+        <p>
+          Flexible seasonal and long-term rental packages allow you to test
+          demand, create new revenue and give your guests something worth
+          talking about.
+        </p>
+        <CTAButton href="/events-business/#business-leasing" variant="solid">Explore Business Leasing</CTAButton>
+      </article>
+    </div>
+  </section>
+
+  <FullBleedCTA
+    eyebrow="Heat / Cold / Restore"
+    heading="Natural rituals.<br />Brighter days."
+    variant="olive"
+  >
+    <CTAButton href="/contact/" variant="solid" onDark={true}>Find Your Ritual</CTAButton>
+  </FullBleedCTA>
 </Layout>
 
 <style>
-  .hero {
-    background: var(--color-charcoal);
-    color: var(--color-stone);
-    padding-block: 6.5rem 5.5rem;
-    text-align: center;
-  }
-
-  .hero-inner {
-    max-width: 42rem;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .hero-mark {
-    color: var(--color-sand);
-    margin-bottom: 1.4rem;
-  }
-
-  .hero-beats {
-    text-transform: uppercase;
-    letter-spacing: 0.28em;
-    font-size: 0.78rem;
-    color: var(--color-sand);
-    margin-bottom: 1.2rem;
-  }
-
-  .hero h1 {
-    font-size: clamp(2.4rem, 6vw, 3.6rem);
-    margin-bottom: 1.3rem;
-  }
-
-  .hero-copy {
-    font-size: 1.05rem;
-    color: var(--color-sand);
-    max-width: 34rem;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1.8rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .hero .button--outline {
-    color: var(--color-stone);
-  }
-
-  .statement {
-    background: var(--color-olive);
-    color: var(--color-stone);
-    padding-block: 3.5rem;
-  }
-
-  .statement-inner {
-    text-align: center;
-  }
-
-  .statement-line {
+  .intro-italic {
     font-family: var(--font-display);
-    font-size: clamp(1.3rem, 3vw, 1.9rem);
-    margin: 0;
-  }
-
-  .statement-line--accent {
-    color: var(--color-sand);
-  }
-
-  .section-intro {
-    max-width: 36rem;
-    color: var(--color-ink-soft);
-  }
-
-  .experience-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.75rem;
-    margin-top: 2.5rem;
-  }
-
-  .experience-card {
-    background: #fff;
-    border: 1px solid var(--color-line);
-    border-radius: 0.75rem;
-    padding: 2rem;
-  }
-
-  .experience-icon {
-    width: 2rem;
-    height: 2rem;
-    color: var(--color-ember);
-    margin-bottom: 1.2rem;
-  }
-
-  .experience-beats {
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 0.75rem;
-    color: var(--color-ember);
-    margin-bottom: 0.8rem;
-  }
-
-  .packages {
-    background: var(--color-bg);
-  }
-
-  .package-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.75rem;
-    margin-top: 2.5rem;
-  }
-
-  .package-card {
-    background: #fff;
-    border: 1px solid var(--color-line);
-    border-radius: 0.75rem;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .package-card--featured {
-    border-color: var(--color-ember);
-    box-shadow: 0 0.5rem 1.5rem rgba(160, 90, 58, 0.12);
-  }
-
-  .package-badge {
-    align-self: flex-start;
-    background: var(--color-ember);
-    color: var(--color-stone);
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 0.25rem 0.7rem;
-    border-radius: 999px;
-    margin: 0 0 1rem;
-  }
-
-  .package-price {
-    color: var(--color-ember);
-    font-weight: 600;
-    margin-bottom: 0.8rem;
-  }
-
-  .package-summary {
-    color: var(--color-ink-soft);
-  }
-
-  .package-features {
-    list-style: none;
-    margin: 0 0 1.6rem;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    flex-grow: 1;
-  }
-
-  .package-features li {
-    position: relative;
-    padding-left: 1.4rem;
-    font-size: 0.9rem;
-    color: var(--color-ink-soft);
-  }
-
-  .package-features li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.5em;
-    width: 0.4rem;
-    height: 0.4rem;
-    border-radius: 50%;
-    background: var(--color-ember);
-  }
-
-  .package-card .button {
-    align-self: flex-start;
-  }
-
-  .events {
-    background: var(--color-olive);
-    color: var(--color-stone);
-  }
-
-  .events > .wrap > h2 {
-    max-width: 40rem;
-  }
-
-  .offer-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    margin-top: 2.8rem;
-  }
-
-  .offer-card {
-    background: var(--color-stone);
-    color: var(--color-ink);
-    border-radius: 0.75rem;
-    padding: 2.5rem;
-    max-width: 46rem;
-  }
-
-  .offer-card h3 {
-    color: var(--color-ink);
-  }
-
-  .offer-lede {
-    font-weight: 600;
-    color: var(--color-ink);
-  }
-
-  .offer-card p {
-    color: var(--color-ink-soft);
-  }
-
-  .offer-closing {
-    font-family: var(--font-display);
-    font-weight: 600;
     font-style: italic;
+    font-size: 1.3rem;
     color: var(--color-ember);
-    margin-top: 1.4rem;
   }
 
-  .offer-card .button--outline {
-    border-color: var(--color-charcoal);
+  .intro-bold {
+    font-weight: 600;
     color: var(--color-ink);
-    margin-top: 0.4rem;
   }
 
-  .wellness-anywhere {
-    background: var(--color-charcoal);
-    color: var(--color-stone);
-  }
-
-  .wellness-inner h2 {
-    max-width: 40rem;
-  }
-
-  .wellness-anywhere .section-intro {
-    color: var(--color-sand);
-  }
-
-  .values-grid {
+  .elements-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    margin-top: 2.8rem;
-    border-top: 1px solid #3a382f;
-    padding-top: 2.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
   }
 
-  .value-item h3 {
-    font-family: var(--font-body);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 0.85rem;
-    color: var(--color-sand);
-    margin-bottom: 0.6rem;
+  .element-card-body {
+    padding-top: 1.4rem;
   }
 
-  .value-item p {
-    font-size: 0.92rem;
-    color: #c8c4ba;
-    margin: 0;
+  .element-card-body h3 {
+    font-size: 1.4rem;
   }
 
-  .benefits-inner {
+  .element-card-body p {
+    color: #d9d6cc;
+  }
+
+  .events-business-grid {
     display: grid;
-    grid-template-columns: 1.1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 3rem;
-    align-items: start;
   }
 
-  .benefits-copy {
-    max-width: 30rem;
+  .events-business-panel h2 {
+    margin-top: 1.4rem;
+    font-size: 1.9rem;
   }
 
-  .benefits-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .benefits-list li {
-    position: relative;
-    padding-left: 1.6rem;
-    color: var(--color-ink-soft);
-  }
-
-  .benefits-list li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.5em;
-    width: 0.55rem;
-    height: 0.55rem;
-    border-radius: 50%;
-    background: var(--color-ember);
-  }
-
-  .cta {
-    background: var(--color-sand);
-    text-align: center;
-  }
-
-  .cta-inner {
-    max-width: 34rem;
-    margin: 0 auto;
-  }
-
-  .cta-mark {
-    color: var(--color-charcoal);
-    margin: 0 auto 1.2rem;
-  }
-
-  .cta-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 1.6rem;
-  }
-
-  .cta .button--outline {
-    border-color: var(--color-charcoal);
+  .panel-statement {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 600;
+    color: var(--color-ember);
   }
 
   @media (max-width: 900px) {
-    .experience-grid,
-    .package-grid {
+    .elements-grid {
       grid-template-columns: 1fr;
+      max-width: 26rem;
+      margin-inline: auto;
     }
 
-    .values-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .benefits-inner {
+    .events-business-grid {
       grid-template-columns: 1fr;
-    }
-
-    .offer-card {
-      padding: 1.75rem;
-    }
-  }
-
-  @media (max-width: 560px) {
-    .values-grid {
-      grid-template-columns: 1fr;
+      gap: 3.5rem;
     }
   }
 </style>

@@ -1,0 +1,35 @@
+---
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  lede?: string;
+  align?: 'left' | 'center';
+  onDark?: boolean;
+  class?: string;
+}
+
+const { eyebrow, heading, lede, align = 'left', onDark = false, class: className = '' } = Astro.props;
+---
+
+<div class={`section-heading section-heading--${align} ${className}`}>
+  {eyebrow && <p class={`eyebrow ${onDark ? 'eyebrow--on-dark' : ''}`}>{eyebrow}</p>}
+  <h2 set:html={heading} />
+  {lede && <p class="section-lede">{lede}</p>}
+</div>
+
+<style>
+  .section-heading h2 {
+    font-size: clamp(1.9rem, 4vw, 2.75rem);
+    max-width: 34rem;
+  }
+
+  .section-heading--center {
+    text-align: center;
+  }
+
+  .section-heading--center h2,
+  .section-heading--center .section-lede {
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>

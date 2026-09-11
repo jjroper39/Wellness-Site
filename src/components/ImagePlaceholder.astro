@@ -1,0 +1,29 @@
+---
+interface Props {
+  alt: string;
+  src?: string;
+  variant?: 'warm' | 'cool' | 'dark' | 'stone';
+  ratio?: string;
+  class?: string;
+  showLabel?: boolean;
+}
+
+const {
+  alt,
+  src,
+  variant = 'warm',
+  ratio = '4 / 5',
+  class: className = '',
+  showLabel = true,
+} = Astro.props;
+---
+
+<div class={`img-block ${className}`} style={`aspect-ratio: ${ratio};`}>
+  {src ? (
+    <img src={src} alt={alt} loading="lazy" decoding="async" />
+  ) : (
+    <div class={`img-placeholder img-placeholder--${variant}`} role="img" aria-label={alt}>
+      {showLabel && <p class="img-placeholder-label">{alt}</p>}
+    </div>
+  )}
+</div>
