@@ -1,0 +1,131 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const rituals = [
+  {
+    name: 'The Morning Wave',
+    time: '45 min',
+    summary: 'Breathwork, warm oil massage, and quiet movement to open the day.',
+  },
+  {
+    name: 'Deep Reset',
+    time: '90 min',
+    summary: 'A longer, fully guided ritual combining touch, heat, and stillness.',
+  },
+  {
+    name: 'Evening Tide',
+    time: '60 min',
+    summary: 'A slow wind-down treatment designed to prepare the body for rest.',
+  },
+];
+---
+
+<Layout title="Home">
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <p class="eyebrow">Onda Ritual</p>
+      <h1>Slow rituals for a steadier life.</h1>
+      <p class="hero-copy">
+        Onda Ritual is a small wellness studio built around one idea: real rest
+        takes time. Our treatments are unhurried, considered, and designed to
+        help you return to your day a little steadier than you left it.
+      </p>
+      <div class="hero-actions">
+        <a class="button" href="/rituals/">Explore rituals</a>
+        <a class="button button--outline" href="/contact/">Book a visit</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="rituals-preview">
+    <div class="wrap">
+      <p class="eyebrow">Featured</p>
+      <h2>A few of our rituals</h2>
+      <div class="ritual-grid">
+        {rituals.map((ritual) => (
+          <article class="ritual-card">
+            <h3>{ritual.name}</h3>
+            <p class="ritual-time">{ritual.time}</p>
+            <p>{ritual.summary}</p>
+          </article>
+        ))}
+      </div>
+      <a class="button button--outline" href="/rituals/">See all rituals</a>
+    </div>
+  </section>
+
+  <section class="promise">
+    <div class="wrap promise-inner">
+      <h2>Our approach</h2>
+      <p>
+        No rushing, no noise, no upsells at the till. Every ritual at Onda is
+        priced simply, booked easily, and held by practitioners who spend as
+        long with you as the treatment needs — not a minute less.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    padding-block: 6rem 5rem;
+  }
+
+  .hero-inner {
+    max-width: 42rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    margin-block: 0.4rem 1.2rem;
+  }
+
+  .hero-copy {
+    font-size: 1.1rem;
+    color: var(--color-ink-soft);
+    max-width: 38rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.8rem;
+    flex-wrap: wrap;
+  }
+
+  .rituals-preview {
+    background: var(--color-bg-alt);
+  }
+
+  .ritual-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 0 2.5rem;
+  }
+
+  .ritual-card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-line);
+    border-radius: 0.75rem;
+    padding: 1.8rem;
+  }
+
+  .ritual-time {
+    color: var(--color-accent);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.8rem;
+  }
+
+  .promise-inner {
+    max-width: 38rem;
+  }
+
+  @media (max-width: 820px) {
+    .ritual-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

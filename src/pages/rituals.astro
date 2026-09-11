@@ -1,0 +1,116 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const rituals = [
+  {
+    name: 'The Morning Wave',
+    time: '45 min',
+    price: '£65',
+    summary:
+      'Breathwork, warm oil massage, and quiet guided movement to open the day with intention.',
+  },
+  {
+    name: 'Deep Reset',
+    time: '90 min',
+    price: '£120',
+    summary:
+      'Our signature treatment. A fully guided ritual combining massage, heat therapy, and stillness practice.',
+  },
+  {
+    name: 'Evening Tide',
+    time: '60 min',
+    price: '£85',
+    summary:
+      'A slow wind-down treatment using gentle touch and warmth to prepare the body and mind for rest.',
+  },
+  {
+    name: 'Steady Ground',
+    time: '60 min',
+    price: '£85',
+    summary:
+      'A grounding, mat-based session pairing restorative stretching with guided breathwork.',
+  },
+];
+---
+
+<Layout
+  title="Rituals"
+  description="Explore our wellness rituals — from morning breathwork to deep evening resets."
+>
+  <section class="intro">
+    <div class="wrap">
+      <p class="eyebrow">Rituals</p>
+      <h1>Treatments, held with care</h1>
+      <p class="intro-copy">
+        Every ritual is designed around a single principle: unhurried time.
+        Choose a treatment below, or get in touch and we'll help you find the
+        right one.
+      </p>
+    </div>
+  </section>
+
+  <section class="ritual-list">
+    <div class="wrap">
+      {rituals.map((ritual) => (
+        <article class="ritual-row">
+          <div class="ritual-heading">
+            <h2>{ritual.name}</h2>
+            <span class="ritual-meta">{ritual.time} &middot; {ritual.price}</span>
+          </div>
+          <p>{ritual.summary}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap cta-inner">
+      <h2>Ready to book?</h2>
+      <p>Get in touch and we'll find a time that suits you.</p>
+      <a class="button" href="/contact/">Contact us</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .intro-copy {
+    max-width: 38rem;
+    color: var(--color-ink-soft);
+  }
+
+  .ritual-list {
+    background: var(--color-bg-alt);
+  }
+
+  .ritual-row {
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .ritual-row:last-child {
+    border-bottom: none;
+  }
+
+  .ritual-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .ritual-heading h2 {
+    margin: 0;
+  }
+
+  .ritual-meta {
+    color: var(--color-accent);
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .cta-inner {
+    text-align: center;
+    max-width: 32rem;
+  }
+</style>
