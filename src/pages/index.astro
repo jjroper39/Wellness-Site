@@ -64,11 +64,45 @@ const packages = [
   },
 ];
 
-const eventTypes = [
-  { label: 'Private gardens', copy: 'A sauna and cold plunge set up at home for a birthday, a stag, or just a good weekend.' },
-  { label: 'Corporate wellness days', copy: 'Bring heat-and-cold recovery to your office or offsite as a proper team perk.' },
-  { label: 'Weddings & retreats', copy: 'A calming centrepiece for guests the morning after, or a quiet ritual mid-retreat.' },
-  { label: 'Festivals & pop-ups', copy: 'Full setup and on-site hosting for multi-day events and brand activations.' },
+const leasingOffers = [
+  {
+    title: 'Corporate Events',
+    lede: 'Want to bring health, wellness and a little something different to your next event? We can make it happen.',
+    body: [
+      'From corporate wellness days and sporting events to birthdays and private celebrations, we create bespoke wellness packages designed around your event.',
+      "Bring the full spa experience to your guests with our saunas, cold plunge pools and wood-fired hot tubs. Whether you want to create a relaxing wellness retreat for the day or add a cold plunge challenge to spice things up while cooling things down, we'll put together the right package for you.",
+      'We take care of the equipment and setup, leaving you to enjoy the experience.',
+    ],
+    closing: 'Your event. Your people. Your ritual.',
+  },
+  {
+    title: 'Campsites, Retreats & Hospitality',
+    lede: 'Give your guests a premium wellness experience without the cost and commitment of owning it.',
+    body: [
+      "Own a campsite, retreat, holiday accommodation or hospitality venue and want to add something special to your guest experience? Investing thousands in buying, installing and maintaining wellness equipment isn't always the right answer.",
+      "That's where we come in.",
+      'We work with businesses across the country to provide flexible, seasonal and longer-term rentals of our saunas, cold plunges and wood-fired hot tubs.',
+      'Create a premium wellness offering, attract new guests and add another revenue stream to your business without the large upfront investment or permanent installation.',
+    ],
+    closing: "Elevate the stay. We'll bring the ritual.",
+  },
+  {
+    title: 'Try Before You Buy',
+    lede: 'Thinking about starting your own sauna and cold plunge business? Test the idea before making the big investment.',
+    body: [
+      "Health and wellness is booming, but setting up your own hot and cold therapy venue can require a significant upfront commitment. Our Try Before You Buy package gives you the opportunity to build and test your concept before investing in a permanent setup.",
+      "Rent the equipment from us for an agreed period and create the wellness escape you've been imagining. We can even help you get started with your website and marketing.",
+    ],
+    highlightLine: {
+      lead: 'You take the bookings. You build your customer base. ',
+      strong: 'You keep the profits.',
+    },
+    bodyAfter: [
+      "It's an opportunity to test your location, understand demand and refine your concept using real customers and real-world results, without committing to an expensive installation from day one.",
+      "And when you're ready to take the next step, we can help with that too.",
+    ],
+    closing: 'Build it. Test it. Make it yours.',
+  },
 ];
 ---
 
@@ -180,21 +214,30 @@ const eventTypes = [
 
   <section id="events" class="events">
     <div class="wrap">
-      <p class="eyebrow">Events</p>
-      <h2>Bring Onda Ritual to your event</h2>
-      <p class="section-intro">
-        From a private garden to a full festival activation, we deliver,
-        host, and pack down — so wellness is just part of the day.
-      </p>
-      <div class="event-grid">
-        {eventTypes.map((e) => (
-          <div class="event-item">
-            <h3>{e.label}</h3>
-            <p>{e.copy}</p>
-          </div>
+      <p class="eyebrow">Events and Business Leasing</p>
+      <h2>Bring Onda Ritual to your event or business</h2>
+      <div class="offer-list">
+        {leasingOffers.map((offer) => (
+          <article class="offer-card">
+            <h3>{offer.title}</h3>
+            <p class="offer-lede">{offer.lede}</p>
+            {offer.body.map((p) => (
+              <p>{p}</p>
+            ))}
+            {offer.highlightLine && (
+              <p>
+                {offer.highlightLine.lead}
+                <strong>{offer.highlightLine.strong}</strong>
+              </p>
+            )}
+            {offer.bodyAfter && offer.bodyAfter.map((p) => (
+              <p>{p}</p>
+            ))}
+            <p class="offer-closing">{offer.closing}</p>
+            <a class="button button--outline" href="#contact">Enquire</a>
+          </article>
         ))}
       </div>
-      <a class="button" href="#contact">Enquire about your event</a>
     </div>
   </section>
 
@@ -424,37 +467,50 @@ const eventTypes = [
     color: var(--color-stone);
   }
 
-  .events .section-intro {
-    color: #dce0d7;
+  .events > .wrap > h2 {
+    max-width: 40rem;
   }
 
-  .event-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+  .offer-list {
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
-    margin: 2.8rem 0 2.5rem;
-    border-top: 1px solid rgba(232, 228, 221, 0.25);
-    padding-top: 2.5rem;
+    margin-top: 2.8rem;
   }
 
-  .event-item h3 {
-    font-family: var(--font-body);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: 0.85rem;
-    margin-bottom: 0.6rem;
-  }
-
-  .event-item p {
-    font-size: 0.92rem;
-    color: #dce0d7;
-    margin: 0;
-  }
-
-  .events .button {
+  .offer-card {
     background: var(--color-stone);
-    color: var(--color-charcoal);
-    border-color: var(--color-stone);
+    color: var(--color-ink);
+    border-radius: 0.75rem;
+    padding: 2.5rem;
+    max-width: 46rem;
+  }
+
+  .offer-card h3 {
+    color: var(--color-ink);
+  }
+
+  .offer-lede {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .offer-card p {
+    color: var(--color-ink-soft);
+  }
+
+  .offer-closing {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-style: italic;
+    color: var(--color-ember);
+    margin-top: 1.4rem;
+  }
+
+  .offer-card .button--outline {
+    border-color: var(--color-charcoal);
+    color: var(--color-ink);
+    margin-top: 0.4rem;
   }
 
   .wellness-anywhere {
@@ -564,19 +620,21 @@ const eventTypes = [
       grid-template-columns: 1fr;
     }
 
-    .values-grid,
-    .event-grid {
+    .values-grid {
       grid-template-columns: repeat(2, 1fr);
     }
 
     .benefits-inner {
       grid-template-columns: 1fr;
     }
+
+    .offer-card {
+      padding: 1.75rem;
+    }
   }
 
   @media (max-width: 560px) {
-    .values-grid,
-    .event-grid {
+    .values-grid {
       grid-template-columns: 1fr;
     }
   }
