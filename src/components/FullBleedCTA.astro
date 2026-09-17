@@ -1,5 +1,5 @@
 ---
-import ApexMark from './ApexMark.astro';
+import LogoMark from './LogoMark.astro';
 
 interface Props {
   eyebrow?: string;
@@ -13,7 +13,7 @@ const { eyebrow, heading, subheading, showMark = true } = Astro.props;
 
 <section class="full-bleed-cta section--navy vertex-cut">
   <div class="wrap full-bleed-cta-inner reveal">
-    {showMark && <ApexMark size={40} class="full-bleed-cta-mark" />}
+    {showMark && <LogoMark size={40} class="full-bleed-cta-mark" />}
     {eyebrow && <p class="eyebrow eyebrow--on-dark">{eyebrow}</p>}
     <h2 set:html={heading} />
     {subheading && <p class="full-bleed-cta-sub">{subheading}</p>}
