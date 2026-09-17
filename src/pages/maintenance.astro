@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import CTAButton from '../components/CTAButton.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import FeatureIcon from '../components/FeatureIcon.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import FullBleedCTA from '../components/FullBleedCTA.astro';
+
+const benefits = [
+  { icon: 'clipboard-check', label: 'Planned visits', copy: 'Regular checks scheduled around your system, not left until something fails.' },
+  { icon: 'shield', label: 'Protect performance', copy: 'Maintained systems tend to run more efficiently and reliably over time.' },
+  { icon: 'tool', label: 'Priority support', copy: 'Faster response when something does need attention.' },
+];
+
+const faqs = [
+  { question: 'What does a maintenance plan include?', answer: 'The exact scope depends on your system and property. We’ll set this out clearly when we put a plan together with you.' },
+  { question: 'How often are visits scheduled?', answer: 'This depends on the type of system and how it’s used — we’ll recommend a schedule as part of your plan.' },
+  { question: 'Is maintenance available for both homes and businesses?', answer: 'Yes — we put maintenance plans together for domestic and commercial properties alike.' },
+];
+---
+
+<Layout
+  title="Maintenance Plans"
+  description="Planned maintenance for heating and air conditioning systems, helping reduce downtime and protect long-term performance."
+>
+  <Hero
+    eyebrow="Maintenance"
+    heading="Planned care, not just repairs."
+    copy="Planned care that helps reduce downtime and protect long-term performance — for homes and businesses alike."
+    imageAlt="A technician carrying out a scheduled maintenance check on a heating system"
+    imageVariant="blue"
+    height="tall"
+  >
+    <CTAButton href="/contact/">Ask About Maintenance</CTAButton>
+  </Hero>
+
+  <section class="section--white">
+    <div class="wrap">
+      <SectionHeading eyebrow="Why it matters" heading="Fewer surprises, better performance" align="center" />
+      <div class="benefits-grid">
+        {benefits.map((b) => (
+          <FeatureIcon icon={b.icon} label={b.label}>{b.copy}</FeatureIcon>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--ice">
+    <div class="wrap wrap--narrow">
+      <SectionHeading eyebrow="FAQ" heading="Maintenance questions" />
+      <FAQAccordion items={faqs} />
+    </div>
+  </section>
+
+  <FullBleedCTA heading="Set up a maintenance plan.">
+    <CTAButton href="/contact/" onDark={true}>Get In Touch</CTAButton>
+  </FullBleedCTA>
+</Layout>
+
+<style>
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 860px) {
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

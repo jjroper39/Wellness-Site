@@ -2,226 +2,249 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import CTAButton from '../components/CTAButton.astro';
-import EditorialSplit from '../components/EditorialSplit.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import FullBleedCTA from '../components/FullBleedCTA.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import FeatureIcon from '../components/FeatureIcon.astro';
+import EditorialSplit from '../components/EditorialSplit.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
 import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+import Testimonial from '../components/Testimonial.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import FullBleedCTA from '../components/FullBleedCTA.astro';
+import Icon from '../components/Icon.astro';
 
-const elements = [
-  {
-    eyebrow: 'Heat',
-    heading: 'Slow down. Switch off.',
-    copy: 'Step into the warmth of your own sauna or wood-fired hot tub. A space to disconnect from everything else and reconnect with yourself and the people around you.',
-    cta: 'Explore Heat',
-    href: '/benefits/#sauna',
-    variant: 'warm' as const,
-    alt: 'Steam rising inside a warm timber sauna interior',
-  },
-  {
-    eyebrow: 'Cold',
-    heading: 'Wake up. Reset.',
-    copy: "There's nothing quite like it. Cold water. Deep breath. That moment of hesitation followed by the feeling that keeps people coming back.",
-    cta: 'Explore Cold',
-    href: '/benefits/#cold-plunge',
-    variant: 'cool' as const,
-    alt: 'Hands touching the rippling surface of cold plunge water',
-  },
-  {
-    eyebrow: 'Restore',
-    heading: 'Find your balance.',
-    copy: "The magic isn't simply hot or cold. It's the ritual of moving between the two. Heat. Cold. Rest. Then do it all over again.",
-    cta: 'Discover the Benefits',
-    href: '/benefits/',
-    variant: 'dark' as const,
-    alt: 'A quiet garden wellness space at dusk, softly lit',
-  },
+const services = [
+  { icon: 'snowflake', name: 'Air Conditioning', copy: 'Efficient cooling and climate control, professionally specified and installed.', href: '/services/#air-conditioning' },
+  { icon: 'flame', name: 'Heating', copy: 'Practical, efficient heating solutions built around your property and usage.', href: '/services/#heating' },
+  { icon: 'tool', name: 'Servicing & Repairs', copy: 'Diagnostics, maintenance and repair to keep systems performing properly.', href: '/services/#servicing-repairs' },
+  { icon: 'clipboard-check', name: 'Maintenance Plans', copy: 'Planned care that helps reduce downtime and protect long-term performance.', href: '/maintenance/' },
+];
+
+const whyVertex = [
+  { icon: 'shield', label: 'Considered specification', copy: 'Every system is sized and specified around your property, not sold off the shelf.' },
+  { icon: 'leaf', label: 'Efficient systems', copy: 'We specify equipment chosen for genuine running efficiency, not just upfront cost.' },
+  { icon: 'check', label: 'Neat installation', copy: 'Pipework, wiring and units installed cleanly, with respect for your space.' },
+  { icon: 'clipboard-check', label: 'Responsive aftercare', copy: 'Support that continues after installation, not just up to the point of sale.' },
+];
+
+const processSteps = [
+  { number: '01', title: 'Survey', copy: 'We assess your property and understand what you actually need.' },
+  { number: '02', title: 'Specification', copy: 'A system specified around your space, usage and budget.' },
+  { number: '03', title: 'Installation', copy: 'Clean, professional installation with minimal disruption.' },
+  { number: '04', title: 'Commissioning', copy: 'Every system tested and commissioned properly before handover.' },
+  { number: '05', title: 'Aftercare', copy: 'Ongoing support and maintenance to keep things running well.' },
+];
+
+const faqs = [
+  { question: 'How much does a new system cost?', answer: 'Costs depend on your property, the system specified and the scope of installation. We provide a clear, itemised quote after a survey — there are no fixed off-the-shelf prices.' },
+  { question: 'How long does installation take?', answer: 'This varies by project size and property type. Once we’ve surveyed your space, we’ll give you a realistic timeframe before any work begins.' },
+  { question: 'How often should a system be serviced?', answer: 'Regular servicing helps protect efficiency and lifespan. We’ll recommend a schedule suited to your specific system as part of your quote.' },
+  { question: 'Do you offer warranties?', answer: 'Warranty terms depend on the equipment installed and are confirmed with you at the point of quotation.' },
+  { question: 'Will a new system actually save me money?', answer: 'A well-specified, efficient system can reduce running costs over time, though the exact impact depends on your property, usage and the system chosen. We’ll talk through this as part of your survey.' },
 ];
 ---
 
 <Layout
-  title="Sauna, Cold Plunge & Wood-Fired Hot Tub Rentals"
-  description="Premium sauna, cold plunge and wood-fired hot tub rentals for homes, events, retreats and businesses. Your ritual, delivered."
+  title="Heating & Air Conditioning Specialists"
+  description="Efficient air-conditioning and heating solutions designed around your home or business. From installation to ongoing maintenance, Vertex Climate keeps your space comfortable all year round."
 >
   <Hero
-    heading="Your ritual.<br />Delivered."
-    copy="Saunas, cold plunges and wood-fired hot tubs, delivered to your home, event or business. Create your own space to switch off, reconnect and feel good — without the commitment of buying your own."
-    imageAlt="A wood-fired hot tub and cedar sauna on a lakeside deck at sunset, mountains in the distance"
-    imageSrc="/hero-lakeside-sauna.jpg"
-    imageVariant="dark"
-    eyebrow="Heat / Cold / Restore"
-    showMark={true}
+    height="full"
+    heading="Heating &amp; cooling,<br />engineered for comfort."
+    copy="Efficient air-conditioning and heating solutions designed around your home or business. From installation to ongoing maintenance, Vertex Climate keeps your space comfortable all year round."
+    imageAlt="A bright, contemporary living room with a discreet air conditioning unit integrated into the design"
+    imageVariant="navy"
   >
-    <CTAButton href="/at-home/" variant="solid" onDark={true}>Explore At-Home Rentals</CTAButton>
-    <CTAButton href="/events-business/" onDark={true}>Events & Business</CTAButton>
+    <CTAButton href="/contact/">Get a Free Quote</CTAButton>
+    <CTAButton href="/services/" variant="outline" onDark={true}>Explore Our Services</CTAButton>
   </Hero>
 
-  <section class="section--ivory intro-section">
-    <div class="wrap">
-      <EditorialSplit imageAlt="Close detail of timber sauna bench and folded linen towels" imageVariant="stone">
-        <h2>More than a plunge.<br />More than a sauna.</h2>
-        <p class="intro-italic">It's a ritual.</p>
-        <p>Hot. Cold. Rest. Repeat.</p>
-        <p>
-          At Onda Ritual, we make premium wellness experiences accessible
-          without the cost or commitment of owning them.
-        </p>
-        <p>
-          From a cold plunge in your garden to a complete sauna and hot tub
-          setup, we deliver everything you need to create your own private
-          wellness escape.
-        </p>
-        <p>A weekend. A month. A season.</p>
-        <p class="intro-bold">You choose the ritual. We'll bring it to you.</p>
-        <CTAButton href="/about/">Discover Onda Ritual</CTAButton>
-      </EditorialSplit>
+  <section class="section--white trust-strip">
+    <div class="wrap trust-strip-inner">
+      <p class="tbd">[Accreditation / warranty / review information to be added]</p>
     </div>
   </section>
 
-  <section class="section--dark elements-section">
+  <section class="section--ice services-section">
     <div class="wrap">
-      <SectionHeading heading="The Three Elements" align="center" onDark={true} />
-      <div class="elements-grid">
-        {elements.map((el) => (
-          <article class="element-card reveal">
-            <ImagePlaceholder alt={el.alt} variant={el.variant} ratio="3 / 4" />
-            <div class="element-card-body">
-              <p class="eyebrow eyebrow--on-dark">{el.eyebrow}</p>
-              <h3>{el.heading}</h3>
-              <p>{el.copy}</p>
-              <CTAButton href={el.href} onDark={true}>{el.cta}</CTAButton>
-            </div>
-          </article>
+      <SectionHeading eyebrow="What we do" heading="Our Services" align="center" />
+      <div class="services-grid">
+        {services.map((s) => (
+          <ServiceCard icon={s.icon} name={s.name} href={s.href}>{s.copy}</ServiceCard>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="section--ivory">
+  <section class="section--white why-section">
     <div class="wrap">
-      <EditorialSplit
-        imageAlt="A private garden sauna and cold plunge just steps from a back door"
-        imageVariant="warm"
-        reverse={true}
-      >
-        <h2>Your own wellness escape.<br />Just outside your door.</h2>
-        <p>Why travel to a spa when the spa can come to you?</p>
-        <p>
-          Rent our premium saunas, cold plunges and wood-fired hot tubs for
-          your home, holiday or special occasion.
-        </p>
-        <p>
-          From weekend escapes to longer-term rentals, we'll deliver and
-          set everything up so all you need to do is step outside.
-        </p>
-        <CTAButton href="/at-home/" variant="solid">Explore At-Home Rentals</CTAButton>
-      </EditorialSplit>
+      <SectionHeading eyebrow="Why Vertex" heading="Comfort, done properly" align="center" />
+      <div class="why-grid">
+        {whyVertex.map((item) => (
+          <FeatureIcon icon={item.icon} label={item.label}>{item.copy}</FeatureIcon>
+        ))}
+      </div>
     </div>
   </section>
 
-  <section class="section--sand events-business-section">
-    <div class="wrap events-business-grid">
-      <article class="events-business-panel reveal">
-        <ImagePlaceholder alt="Colleagues gathered around a hot tub at a corporate wellness day" variant="warm" ratio="4 / 3" />
-        <p class="eyebrow">Events</p>
-        <h2>Bring something different.</h2>
-        <p>Corporate wellness day? Birthday? Sporting event? Retreat?</p>
-        <p>Turn your event into an experience people actually remember.</p>
-        <p>
-          Choose from individual products or let us create a complete
-          hot-and-cold wellness experience for your guests.
-        </p>
-        <p class="panel-statement">Your event. Your people. Your ritual.</p>
-        <CTAButton href="/events-business/#events" variant="solid">Explore Event Packages</CTAButton>
+  <section class="section--ice domestic-commercial-section">
+    <div class="wrap dc-grid">
+      <article class="dc-panel card reveal">
+        <ImagePlaceholder alt="A modern home living space with an integrated air conditioning and heating system" variant="ice" ratio="4 / 3" />
+        <div class="dc-panel-body">
+          <p class="eyebrow">Domestic</p>
+          <h3>For your home</h3>
+          <p>Considered heating and cooling for homes of every size — installed cleanly and specified around how you actually live.</p>
+          <CTAButton href="/domestic/" variant="outline">Explore Domestic</CTAButton>
+        </div>
       </article>
-
-      <article class="events-business-panel reveal">
-        <ImagePlaceholder alt="A boutique retreat garden with a wood-fired hot tub for guests" variant="cool" ratio="4 / 3" />
-        <p class="eyebrow">Business</p>
-        <h2>Wellness without the big investment.</h2>
-        <p>
-          Add a premium wellness experience to your campsite, retreat,
-          holiday accommodation or hospitality business without spending
-          thousands on purchasing and installing equipment.
-        </p>
-        <p>
-          Flexible seasonal and long-term rental packages allow you to test
-          demand, create new revenue and give your guests something worth
-          talking about.
-        </p>
-        <CTAButton href="/events-business/#business-leasing" variant="solid">Explore Business Leasing</CTAButton>
+      <article class="dc-panel card reveal">
+        <ImagePlaceholder alt="A modern commercial office space with a discreet HVAC installation" variant="navy" ratio="4 / 3" />
+        <div class="dc-panel-body">
+          <p class="eyebrow">Commercial</p>
+          <h3>For your business</h3>
+          <p>Reliable climate control for offices, retail and commercial premises, specified around occupancy and operating hours.</p>
+          <CTAButton href="/commercial/" variant="outline">Explore Commercial</CTAButton>
+        </div>
       </article>
     </div>
   </section>
 
-  <FullBleedCTA
-    eyebrow="Heat / Cold / Restore"
-    heading="Natural rituals.<br />Brighter days."
-    variant="olive"
-  >
-    <CTAButton href="/contact/" variant="solid" onDark={true}>Find Your Ritual</CTAButton>
+  <section class="section--white process-section">
+    <div class="wrap">
+      <SectionHeading eyebrow="How it works" heading="Our Process" align="center" />
+      <ProcessSteps steps={processSteps} />
+    </div>
+  </section>
+
+  <section class="section--ice work-section">
+    <div class="wrap">
+      <SectionHeading eyebrow="Featured work" heading="Case Studies" />
+      <div class="work-grid">
+        {[1, 2, 3].map((i) => (
+          <article class="work-card card reveal">
+            <ImagePlaceholder alt={`Case study placeholder ${i} — add project photography and details here`} variant="blue" ratio="4 / 3" />
+            <div class="work-card-body">
+              <p class="tbd">Case study placeholder — add project details, photography and outcome here.</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <CTAButton href="/projects/" variant="outline">View All Projects</CTAButton>
+    </div>
+  </section>
+
+  <section class="section--white reviews-section">
+    <div class="wrap">
+      <SectionHeading eyebrow="Reviews" heading="What our customers say" align="center" />
+      <Testimonial />
+    </div>
+  </section>
+
+  <section class="section--ice faq-section">
+    <div class="wrap wrap--narrow">
+      <SectionHeading eyebrow="FAQ" heading="Common questions" />
+      <FAQAccordion items={faqs} />
+    </div>
+  </section>
+
+  <FullBleedCTA heading="Ready for better comfort?">
+    <CTAButton href="/contact/" onDark={true}>Get a Free Quote</CTAButton>
+    <a href="#" class="final-cta-phone btn btn--outline btn--on-dark">
+      <Icon name="phone" size={16} />
+      <span class="tbd-inline">[VERTEX PHONE]</span>
+    </a>
   </FullBleedCTA>
 </Layout>
 
 <style>
-  .intro-italic {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 1.3rem;
-    color: var(--color-ember);
+  .trust-strip-inner {
+    text-align: center;
   }
 
-  .intro-bold {
-    font-weight: 600;
-    color: var(--color-ink);
+  .trust-strip-inner p {
+    margin: 0;
+    font-size: 0.9rem;
   }
 
-  .elements-grid {
+  .services-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     margin-top: 3rem;
   }
 
-  .element-card-body {
-    padding-top: 1.4rem;
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
   }
 
-  .element-card-body h3 {
+  .dc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem;
+  }
+
+  .dc-panel {
+    overflow: hidden;
+  }
+
+  .dc-panel-body {
+    padding: 1.75rem;
+  }
+
+  .dc-panel-body h3 {
     font-size: 1.4rem;
   }
 
-  .element-card-body p {
-    color: #d9d6cc;
+  .dc-panel-body p {
+    color: var(--mid-grey);
   }
 
-  .events-business-grid {
+  .work-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin: 3rem 0 2.5rem;
   }
 
-  .events-business-panel h2 {
-    margin-top: 1.4rem;
-    font-size: 1.9rem;
+  .work-card {
+    overflow: hidden;
   }
 
-  .panel-statement {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 600;
-    color: var(--color-ember);
+  .work-card-body {
+    padding: 1.4rem;
   }
 
-  @media (max-width: 900px) {
-    .elements-grid {
-      grid-template-columns: 1fr;
-      max-width: 26rem;
-      margin-inline: auto;
+  .work-card-body p {
+    margin: 0;
+    font-size: 0.88rem;
+  }
+
+  .final-cta-phone {
+    text-decoration: none;
+  }
+
+  @media (max-width: 960px) {
+    .services-grid,
+    .why-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
+  }
 
-    .events-business-grid {
+  @media (max-width: 860px) {
+    .dc-grid,
+    .work-grid {
       grid-template-columns: 1fr;
-      gap: 3.5rem;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .services-grid,
+    .why-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>

@@ -1,15 +1,12 @@
 ---
-import WaveMark from './WaveMark.astro';
-
 interface Props {
   eyebrow?: string;
   heading: string;
   copy?: string;
   imageAlt: string;
   imageSrc?: string;
-  imageVariant?: 'warm' | 'cool' | 'dark' | 'stone';
+  imageVariant?: 'navy' | 'blue' | 'orange' | 'ice';
   height?: 'full' | 'tall';
-  showMark?: boolean;
 }
 
 const {
@@ -18,9 +15,8 @@ const {
   copy,
   imageAlt,
   imageSrc,
-  imageVariant = 'dark',
-  height = 'full',
-  showMark = false,
+  imageVariant = 'navy',
+  height = 'tall',
 } = Astro.props;
 ---
 
@@ -32,14 +28,14 @@ const {
   )}
   <div class="hero-overlay"></div>
   <div class="wrap hero-inner">
-    {showMark && <WaveMark size={56} class="hero-mark" />}
+    {eyebrow && <p class="eyebrow eyebrow--on-dark">{eyebrow}</p>}
     <h1 set:html={heading} class="reveal is-visible" />
     {copy && <p class="hero-copy">{copy}</p>}
     <div class="btn-row hero-actions">
       <slot />
     </div>
-    {eyebrow && <p class="beats beats--on-dark hero-beats">{eyebrow}</p>}
   </div>
+  <div class="hero-cut" aria-hidden="true"></div>
 </section>
 
 <style>
@@ -47,16 +43,16 @@ const {
     position: relative;
     display: flex;
     align-items: center;
-    color: var(--color-stone);
+    color: #fff;
     overflow: hidden;
   }
 
   .hero--full {
-    min-height: 92vh;
+    min-height: 88vh;
   }
 
   .hero--tall {
-    min-height: 62vh;
+    min-height: 56vh;
     padding-top: 5rem;
   }
 
@@ -74,34 +70,30 @@ const {
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(90deg, rgba(14, 13, 10, 0.78) 0%, rgba(14, 13, 10, 0.5) 40%, rgba(14, 13, 10, 0.12) 68%, rgba(14, 13, 10, 0.3) 100%),
-      linear-gradient(180deg, rgba(10, 10, 8, 0.3) 0%, rgba(10, 10, 8, 0.05) 28%, rgba(10, 10, 8, 0.55) 100%);
+    background: linear-gradient(115deg, rgba(8, 26, 56, 0.82) 0%, rgba(8, 42, 85, 0.62) 45%, rgba(8, 42, 85, 0.35) 100%);
   }
 
   .hero-inner {
     position: relative;
     z-index: 1;
-    max-width: 42rem;
+    max-width: 40rem;
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
-    padding-block: 8rem 4rem;
-  }
-
-  .hero-inner :global(.hero-mark) {
-    color: var(--color-sand);
-    margin-bottom: 0.6rem;
+    padding-block: 7.5rem 5rem;
   }
 
   .hero-inner h1 {
-    font-size: clamp(2.4rem, 6vw, 4rem);
-    margin-bottom: 0.6rem;
+    color: #fff;
+    font-size: clamp(2.3rem, 6vw, 4rem);
+    margin-bottom: 0.5rem;
   }
 
   .hero-copy {
+    font-family: var(--font-body);
+    text-transform: none;
     font-size: 1.08rem;
-    color: #ece8df;
+    color: #dce6f0;
     max-width: 32rem;
   }
 
@@ -109,13 +101,23 @@ const {
     margin-top: 1rem;
   }
 
-  .hero-beats {
-    margin-top: 2.5rem;
+  .hero-cut {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 4.5rem;
+    background: var(--off-white);
+    clip-path: polygon(0 100%, 100% 40%, 100% 100%);
   }
 
   @media (max-width: 640px) {
     .hero-inner {
-      padding-block: 6.5rem 3rem;
+      padding-block: 6rem 3.5rem;
+    }
+
+    .hero-cut {
+      height: 2.5rem;
     }
   }
 </style>

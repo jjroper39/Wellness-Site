@@ -1,17 +1,17 @@
 ---
 interface Props {
   href: string;
-  variant?: 'outline' | 'solid' | 'ember';
+  variant?: 'primary' | 'navy' | 'outline';
   onDark?: boolean;
   class?: string;
 }
 
-const { href, variant = 'outline', onDark = false, class: className = '' } = Astro.props;
+const { href, variant = 'primary', onDark = false, class: className = '' } = Astro.props;
 
 const classes = [
   'btn',
-  variant === 'solid' && 'btn--solid',
-  variant === 'ember' && 'btn--ember',
+  variant === 'navy' && 'btn--navy',
+  variant === 'outline' && 'btn--outline',
   onDark && 'btn--on-dark',
   className,
 ]

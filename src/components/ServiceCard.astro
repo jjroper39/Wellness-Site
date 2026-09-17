@@ -1,0 +1,63 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  icon: string;
+  name: string;
+  href?: string;
+}
+
+const { icon, name, href } = Astro.props;
+---
+
+<article class="service-card card reveal">
+  <span class="service-card-badge">
+    <Icon name={icon as any} size={26} />
+  </span>
+  <h3>{name}</h3>
+  <p><slot /></p>
+  {href && (
+    <a href={href} class="service-card-link">
+      Learn more
+      <Icon name="arrow-right" size={16} />
+    </a>
+  )}
+</article>
+
+<style>
+  .service-card {
+    padding: 2rem;
+  }
+
+  .service-card-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 10px;
+    background: var(--ice);
+    color: var(--navy);
+    margin-bottom: 1.2rem;
+  }
+
+  .service-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .service-card p {
+    color: var(--mid-grey);
+    font-size: 0.95rem;
+  }
+
+  .service-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    color: var(--orange);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+</style>

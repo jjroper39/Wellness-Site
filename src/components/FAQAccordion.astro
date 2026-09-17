@@ -1,0 +1,72 @@
+---
+import Icon from './Icon.astro';
+
+interface Item {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: Item[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="faq-list">
+  {items.map((item) => (
+    <details class="faq-item">
+      <summary>
+        <span>{item.question}</span>
+        <Icon name="chevron-down" size={20} class="faq-chevron" />
+      </summary>
+      <p>{item.answer}</p>
+    </details>
+  ))}
+</div>
+
+<style>
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .faq-item {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    background: #fff;
+    padding: 1.3rem 1.5rem;
+  }
+
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    list-style: none;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item :global(.faq-chevron) {
+    flex-shrink: 0;
+    color: var(--orange);
+    transition: transform 0.2s ease;
+  }
+
+  .faq-item[open] :global(.faq-chevron) {
+    transform: rotate(180deg);
+  }
+
+  .faq-item p {
+    margin: 1rem 0 0;
+    color: var(--mid-grey);
+    font-size: 0.95rem;
+  }
+</style>

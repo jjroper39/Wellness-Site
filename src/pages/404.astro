@@ -1,17 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import WaveMark from '../components/WaveMark.astro';
+import ApexMark from '../components/ApexMark.astro';
 import CTAButton from '../components/CTAButton.astro';
 ---
 
 <Layout title="Page Not Found">
-  <section class="section--dark not-found">
+  <section class="section--navy not-found">
     <div class="wrap not-found-inner">
-      <WaveMark size={48} class="not-found-mark" />
-      <p class="beats beats--on-dark">404</p>
+      <ApexMark size={44} class="not-found-mark" />
+      <p class="eyebrow eyebrow--on-dark">404</p>
       <h1>We couldn't find that page.</h1>
       <p>It may have moved, or the link might be out of date.</p>
-      <CTAButton href="/" onDark={true} variant="solid">Back to Home</CTAButton>
+      <CTAButton href="/" onDark={true}>Back to Home</CTAButton>
     </div>
   </section>
 </Layout>
@@ -34,11 +34,11 @@ import CTAButton from '../components/CTAButton.astro';
   }
 
   .not-found-inner :global(.not-found-mark) {
-    color: var(--color-sand);
     margin-bottom: 0.6rem;
   }
 
   .not-found-inner h1 {
+    color: #fff;
     font-size: 2.2rem;
   }
 

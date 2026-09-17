@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import CTAButton from '../components/CTAButton.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import EditorialSplit from '../components/EditorialSplit.astro';
+import FeatureIcon from '../components/FeatureIcon.astro';
+import FullBleedCTA from '../components/FullBleedCTA.astro';
+
+const points = [
+  { icon: 'home', label: 'Any home, any size', copy: 'From a single room to a full house system, specified around your property.' },
+  { icon: 'leaf', label: 'Efficient by design', copy: 'Systems chosen for genuine running efficiency, not just the lowest upfront cost.' },
+  { icon: 'check', label: 'Neat, respectful installation', copy: 'Careful work in your home, with pipework and units installed cleanly.' },
+  { icon: 'clipboard-check', label: 'Ongoing support', copy: 'Servicing and maintenance plans to keep your system performing well.' },
+];
+---
+
+<Layout
+  title="Domestic Heating & Air Conditioning"
+  description="Considered heating and air conditioning for homes of every size, specified around how you actually live and installed cleanly by Vertex Climate."
+>
+  <Hero
+    eyebrow="Domestic"
+    heading="Comfort, at home."
+    copy="Considered heating and cooling for homes of every size — installed cleanly and specified around how you actually live."
+    imageAlt="A bright, comfortable home interior with a discreet climate control system"
+    imageVariant="ice"
+  >
+    <CTAButton href="/contact/">Get a Free Quote</CTAButton>
+  </Hero>
+
+  <section class="section--white">
+    <div class="wrap">
+      <EditorialSplit imageAlt="A family home with an integrated heating and cooling system" imageVariant="navy">
+        <p class="eyebrow">Why homeowners choose us</p>
+        <h2>A system built around your home.</h2>
+        <p>
+          No two homes are the same, so we don't sell one-size-fits-all
+          systems. A survey of your property comes first, so what we
+          specify actually fits how you live.
+        </p>
+        <p>
+          From a single air conditioning unit to a full heating overhaul,
+          the process is the same: survey, specify, install, commission,
+          and support.
+        </p>
+        <CTAButton href="/services/" variant="outline">Explore Our Services</CTAButton>
+      </EditorialSplit>
+    </div>
+  </section>
+
+  <section class="section--ice">
+    <div class="wrap">
+      <SectionHeading heading="What to expect" align="center" />
+      <div class="points-grid">
+        {points.map((p) => (
+          <FeatureIcon icon={p.icon} label={p.label}>{p.copy}</FeatureIcon>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FullBleedCTA heading="Ready for a more comfortable home?">
+    <CTAButton href="/contact/" onDark={true}>Get a Free Quote</CTAButton>
+  </FullBleedCTA>
+</Layout>
+
+<style>
+  .points-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 960px) {
+    .points-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .points-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

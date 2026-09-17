@@ -3,97 +3,96 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import CTAButton from '../components/CTAButton.astro';
 import EditorialSplit from '../components/EditorialSplit.astro';
+import SectionHeading from '../components/SectionHeading.astro';
 import FullBleedCTA from '../components/FullBleedCTA.astro';
+
+const values = [
+  { label: 'Precise', copy: 'Every system is surveyed and specified properly before any work begins.' },
+  { label: 'Dependable', copy: 'We do what we say we’ll do, and support systems after installation.' },
+  { label: 'Approachable', copy: 'Straightforward advice, without jargon or pressure.' },
+];
 ---
 
 <Layout
   title="About"
-  description="Onda Ritual brings premium sauna, cold plunge and wood-fired hot tub experiences to homes, events and businesses across the UK. This is why we started."
+  description="Vertex Climate is a heating and air conditioning specialist for domestic and commercial customers, built around considered specification and dependable aftercare."
 >
   <Hero
-    heading="Onda means wave."
-    copy="A reminder that rest moves in cycles, not straight lines."
-    imageAlt="A quiet lake at dawn, still water meeting distant mountains"
-    imageVariant="cool"
+    eyebrow="About"
+    heading="Comfort, engineered."
+    copy="Vertex Climate is a modern heating and cooling specialist for domestic and commercial customers."
+    imageAlt="A clean, modern building exterior representing a professional engineering business"
+    imageVariant="navy"
     height="tall"
   />
 
-  <section class="section--ivory">
+  <section class="section--white">
     <div class="wrap">
-      <EditorialSplit imageAlt="Founders testing an early wood-fired hot tub setup in a garden" imageVariant="warm">
-        <p class="eyebrow">Our Story</p>
-        <h2>Why we started<br />Onda Ritual.</h2>
+      <EditorialSplit imageAlt="An engineer carefully specifying a heating and cooling installation" imageVariant="ice">
+        <p class="eyebrow">Our approach</p>
+        <h2>Engineered, not guessed.</h2>
         <p>
-          We built Onda Ritual around one idea: real rest takes time, and
-          the ritual of moving between heat and cold has lasted for
-          centuries because it works.
+          Heating and cooling systems are easy to get wrong — oversized,
+          undersized, or specified without much thought for how a space is
+          actually used.
         </p>
         <p>
-          Owning a sauna, a cold plunge and a wood-fired hot tub outright is
-          a big commitment — in cost, space and upkeep. We wanted to make
-          that experience accessible without asking people to take on all
-          three.
+          We take a more considered approach: survey the property, specify
+          a system that fits, install it cleanly, and stay available for
+          servicing and support afterwards.
         </p>
         <p>
-          So we deliver it instead. To a garden, an event, a retreat, a
-          business. Set up properly, explained simply, and collected again
-          when you're done.
+          That's the idea behind the name — <strong>Vertex</strong>, the
+          point where precision and comfort meet.
         </p>
+        <CTAButton href="/contact/">Get a Free Quote</CTAButton>
       </EditorialSplit>
     </div>
   </section>
 
-  <section class="section--sand">
+  <section class="section--ice">
     <div class="wrap values-inner">
-      <p class="eyebrow">What We Believe</p>
-      <h2>Unhurried, on purpose.</h2>
+      <SectionHeading heading="What we value" align="center" />
       <div class="values-grid">
-        <div class="reveal">
-          <h3>Unhurried by design</h3>
-          <p>Every setup is built around time to actually use it, not rush through it.</p>
-        </div>
-        <div class="reveal">
-          <h3>Honest, upfront pricing</h3>
-          <p>No memberships, no hidden fees — just a clear price for the ritual you choose.</p>
-        </div>
-        <div class="reveal">
-          <h3>A small, hands-on team</h3>
-          <p>The people who deliver and set up your equipment know it inside out.</p>
-        </div>
+        {values.map((v) => (
+          <div class="value-item reveal">
+            <h3>{v.label}</h3>
+            <p>{v.copy}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <FullBleedCTA heading="Natural rituals.<br />Brighter days." variant="olive">
-    <CTAButton href="/contact/" variant="solid" onDark={true}>Find Your Ritual</CTAButton>
+  <FullBleedCTA heading="Ready for better comfort?">
+    <CTAButton href="/contact/" onDark={true}>Get a Free Quote</CTAButton>
   </FullBleedCTA>
 </Layout>
 
 <style>
-  .values-inner h2 {
-    max-width: 26rem;
-  }
-
   .values-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin-top: 3rem;
-    border-top: 1px solid rgba(31, 31, 31, 0.15);
-    padding-top: 2.5rem;
   }
 
-  .values-grid h3 {
-    font-family: var(--font-body);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-size: 0.88rem;
-    margin-bottom: 0.6rem;
+  .value-item {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    padding: 1.75rem;
   }
 
-  .values-grid p {
-    font-size: 0.92rem;
-    color: #4a463f;
+  .value-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .value-item p {
+    color: var(--mid-grey);
+    font-size: 0.94rem;
+    margin: 0;
   }
 
   @media (max-width: 860px) {

@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import CTAButton from '../components/CTAButton.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import EditorialSplit from '../components/EditorialSplit.astro';
+import FeatureIcon from '../components/FeatureIcon.astro';
+import FullBleedCTA from '../components/FullBleedCTA.astro';
+
+const points = [
+  { icon: 'building', label: 'Offices & retail', copy: 'Climate control specified around occupancy, opening hours and footfall.' },
+  { icon: 'leaf', label: 'Efficiency at scale', copy: 'Running costs matter more at commercial scale — we specify accordingly.' },
+  { icon: 'clipboard-check', label: 'Minimal disruption', copy: 'Installation planned around your operating hours wherever possible.' },
+  { icon: 'shield', label: 'Planned maintenance', copy: 'Maintenance plans that help reduce downtime and unexpected failures.' },
+];
+---
+
+<Layout
+  title="Commercial Heating & Air Conditioning"
+  description="Reliable climate control for offices, retail and commercial premises, specified around occupancy and operating hours by Vertex Climate."
+>
+  <Hero
+    eyebrow="Commercial"
+    heading="Comfort, for business."
+    copy="Reliable climate control for offices, retail and commercial premises, specified around occupancy and operating hours."
+    imageAlt="A modern commercial office space with discreet climate control"
+    imageVariant="navy"
+  >
+    <CTAButton href="/contact/">Get a Free Quote</CTAButton>
+  </Hero>
+
+  <section class="section--white">
+    <div class="wrap">
+      <EditorialSplit imageAlt="A commercial retail space with efficient climate control" imageVariant="blue" reverse={true}>
+        <p class="eyebrow">Why businesses choose us</p>
+        <h2>Systems specified for how you operate.</h2>
+        <p>
+          Commercial spaces have different demands to homes — occupancy
+          patterns, operating hours, and the cost of downtime all factor
+          into what we specify.
+        </p>
+        <p>
+          We work with you to plan installation around your business, and
+          put maintenance plans in place to protect performance over time.
+        </p>
+        <CTAButton href="/maintenance/" variant="outline">See Maintenance Plans</CTAButton>
+      </EditorialSplit>
+    </div>
+  </section>
+
+  <section class="section--ice">
+    <div class="wrap">
+      <SectionHeading heading="What to expect" align="center" />
+      <div class="points-grid">
+        {points.map((p) => (
+          <FeatureIcon icon={p.icon} label={p.label}>{p.copy}</FeatureIcon>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FullBleedCTA heading="Ready to talk about your premises?">
+    <CTAButton href="/contact/" onDark={true}>Get a Free Quote</CTAButton>
+  </FullBleedCTA>
+</Layout>
+
+<style>
+  .points-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 960px) {
+    .points-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .points-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

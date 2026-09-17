@@ -10,7 +10,7 @@ interface Props {
 
 const {
   title,
-  description = 'Premium sauna, cold plunge and wood-fired hot tub rentals for homes, events, retreats and businesses. Your ritual, delivered.',
+  description = 'Efficient air-conditioning and heating solutions designed around your home or business. From installation to ongoing maintenance, Vertex Climate keeps your space comfortable all year round.',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -30,10 +30,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
-    <title>{title} · Onda Ritual</title>
+    <title>{title} · Vertex Climate</title>
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content={`${title} · Onda Ritual`} />
+    <meta property="og:title" content={`${title} · Vertex Climate`} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta name="twitter:card" content="summary_large_image" />
@@ -41,7 +41,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>

@@ -33,33 +33,32 @@ const { steps } = Astro.props;
   }
 
   .process-step {
-    border-top: 1px solid var(--color-line);
-    padding-top: 1.5rem;
+    position: relative;
+    border-top: 3px solid var(--orange);
+    padding-top: 1.4rem;
   }
 
   .process-step-number {
     display: block;
     font-family: var(--font-display);
-    font-size: 1.4rem;
-    color: var(--color-ember);
-    margin-bottom: 0.8rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.6rem;
   }
 
   .process-step h3 {
-    font-family: var(--font-body);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: 0.82rem;
+    font-size: 0.95rem;
     margin-bottom: 0.5rem;
   }
 
   .process-step p {
     font-size: 0.88rem;
-    color: var(--color-ink-soft);
+    color: var(--mid-grey);
     margin: 0;
   }
 
-  @media (max-width: 860px) {
+  @media (max-width: 900px) {
     .process-steps {
       grid-template-columns: repeat(2, 1fr);
     }

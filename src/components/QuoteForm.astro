@@ -1,0 +1,224 @@
+---
+const serviceOptions = ['Air Conditioning', 'Heating', 'Servicing & Repairs', 'Maintenance Plans', 'Not sure yet'];
+const propertyOptions = ['Domestic', 'Commercial'];
+---
+
+<form class="quote-form" id="quote-form" novalidate>
+  <fieldset class="form-field">
+    <legend>What do you need?</legend>
+    <div class="chip-group" data-chip-group="service">
+      {serviceOptions.map((opt) => (
+        <button type="button" class="chip" data-value={opt}>{opt}</button>
+      ))}
+    </div>
+    <input type="hidden" name="service" id="service-input" required />
+  </fieldset>
+
+  <fieldset class="form-field">
+    <legend>Property type</legend>
+    <div class="chip-group" data-chip-group="property">
+      {propertyOptions.map((opt) => (
+        <button type="button" class="chip" data-value={opt}>{opt}</button>
+      ))}
+    </div>
+    <input type="hidden" name="property" id="property-input" required />
+  </fieldset>
+
+  <div class="form-grid">
+    <label class="form-field">
+      <span>Name</span>
+      <input type="text" name="name" required />
+    </label>
+
+    <label class="form-field">
+      <span>Email</span>
+      <input type="email" name="email" required />
+    </label>
+
+    <label class="form-field">
+      <span>Phone <em>(optional)</em></span>
+      <input type="tel" name="phone" />
+    </label>
+
+    <label class="form-field">
+      <span>Postcode</span>
+      <input type="text" name="postcode" />
+    </label>
+  </div>
+
+  <label class="form-field">
+    <span>Tell us about what you need</span>
+    <textarea name="details" rows="4"></textarea>
+  </label>
+
+  <button type="submit" class="btn quote-submit">Get a Free Quote</button>
+  <p class="form-note">
+    Sending opens your email client with your answers pre-filled — nothing
+    is sent until you press send there.
+  </p>
+</form>
+
+<div class="quote-success" id="quote-success" hidden>
+  <p class="eyebrow">Thank you</p>
+  <h3>Your enquiry is ready to send.</h3>
+  <p>We've opened your email client with your details filled in. Just add our address, hit send, and we'll be in touch shortly.</p>
+</div>
+
+<style>
+  .quote-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2.1rem;
+    max-width: 40rem;
+  }
+
+  .form-field {
+    border: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .form-field legend,
+  .form-field > span {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    padding: 0;
+  }
+
+  .form-field em {
+    font-weight: 400;
+    font-style: italic;
+    color: var(--mid-grey);
+  }
+
+  .chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .chip {
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--charcoal);
+    padding: 0.6rem 1.1rem;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    border-radius: var(--radius-btn);
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .chip:hover {
+    border-color: var(--orange);
+  }
+
+  .chip.is-selected {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: #fff;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.6rem 1.5rem;
+  }
+
+  input,
+  textarea {
+    font-family: var(--font-body);
+    font-size: 0.98rem;
+    padding: 0.8rem 0.9rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-btn);
+    background: #fff;
+    color: var(--charcoal);
+  }
+
+  input:focus,
+  textarea:focus {
+    outline: 2px solid var(--orange);
+    outline-offset: 1px;
+  }
+
+  .quote-submit {
+    align-self: flex-start;
+  }
+
+  .form-note {
+    font-size: 0.8rem;
+    color: var(--mid-grey);
+    max-width: 30rem;
+    margin: -1.1rem 0 0;
+  }
+
+  .quote-success {
+    max-width: 34rem;
+    padding: 2rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    background: #fff;
+  }
+
+  @media (max-width: 640px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('quote-form');
+  const success = document.getElementById('quote-success');
+
+  document.querySelectorAll('[data-chip-group]').forEach((group) => {
+    const inputId = `${group.getAttribute('data-chip-group')}-input`;
+    const hiddenInput = document.getElementById(inputId);
+    group.querySelectorAll('.chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        group.querySelectorAll('.chip').forEach((c) => c.classList.remove('is-selected'));
+        chip.classList.add('is-selected');
+        if (hiddenInput) hiddenInput.value = chip.getAttribute('data-value') || '';
+      });
+    });
+  });
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const data = new FormData(form);
+    const name = String(data.get('name') || '').trim();
+    const email = String(data.get('email') || '').trim();
+    const service = String(data.get('service') || '').trim();
+    const property = String(data.get('property') || '').trim();
+
+    if (!name || !email || !service || !property) {
+      form.reportValidity();
+      return;
+    }
+
+    const lines = [
+      `Service: ${service}`,
+      `Property type: ${property}`,
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Phone: ${data.get('phone') || '—'}`,
+      `Postcode: ${data.get('postcode') || '—'}`,
+      '',
+      'Details:',
+      String(data.get('details') || '—'),
+    ];
+
+    const subject = encodeURIComponent('Vertex Climate quote request');
+    const body = encodeURIComponent(lines.join('\n'));
+    window.location.href = `mailto:?subject=${subject}&body=${body}`;
+
+    form.hidden = true;
+    if (success) success.hidden = false;
+  });
+</script>

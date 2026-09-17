@@ -12,7 +12,9 @@ const { icon, label, onDark = false, class: className = '' } = Astro.props;
 ---
 
 <div class={`feature-icon ${onDark ? 'feature-icon--on-dark' : ''} ${className}`}>
-  <Icon name={icon as any} size={26} class="feature-icon-svg" />
+  <span class="feature-icon-badge">
+    <Icon name={icon as any} size={24} />
+  </span>
   <h3>{label}</h3>
   <p><slot /></p>
 </div>
@@ -22,26 +24,39 @@ const { icon, label, onDark = false, class: className = '' } = Astro.props;
     max-width: 18rem;
   }
 
-  .feature-icon :global(.feature-icon-svg) {
-    color: var(--color-ember);
+  .feature-icon-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 10px;
+    background: var(--ice);
+    color: var(--navy);
     margin-bottom: 1rem;
   }
 
+  .feature-icon--on-dark .feature-icon-badge {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+
   .feature-icon h3 {
-    font-family: var(--font-body);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: 0.88rem;
+    font-size: 1.05rem;
     margin-bottom: 0.5rem;
   }
 
+  .feature-icon--on-dark h3 {
+    color: #fff;
+  }
+
   .feature-icon p {
-    font-size: 0.92rem;
-    color: var(--color-ink-soft);
+    font-size: 0.94rem;
+    color: var(--mid-grey);
     margin: 0;
   }
 
   .feature-icon--on-dark p {
-    color: #d9d6cc;
+    color: #c3d0e0;
   }
 </style>

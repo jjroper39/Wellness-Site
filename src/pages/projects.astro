@@ -1,0 +1,80 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import CTAButton from '../components/CTAButton.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+import FullBleedCTA from '../components/FullBleedCTA.astro';
+
+const placeholders = [
+  { variant: 'navy' as const, ratio: '4 / 3' },
+  { variant: 'blue' as const, ratio: '4 / 3' },
+  { variant: 'orange' as const, ratio: '4 / 3' },
+  { variant: 'ice' as const, ratio: '4 / 3' },
+];
+---
+
+<Layout
+  title="Projects & Case Studies"
+  description="Real installation and project photography from Vertex Climate, added as work is completed."
+>
+  <Hero
+    eyebrow="Our work"
+    heading="Projects &amp; case studies."
+    copy="A growing collection of real installations across domestic and commercial properties. Case studies are added here as projects are completed."
+    imageAlt="A completed heating and cooling installation in a modern property"
+    imageVariant="blue"
+    height="tall"
+  />
+
+  <section class="section--white">
+    <div class="wrap">
+      <div class="projects-grid">
+        {placeholders.map((p) => (
+          <article class="project-card card reveal">
+            <ImagePlaceholder
+              alt="Case study placeholder — add real installation photography, property type and outcome here"
+              variant={p.variant}
+              ratio={p.ratio}
+            />
+            <div class="project-card-body">
+              <p class="tbd">Case study placeholder</p>
+              <p class="project-card-note">Add project details, photography and outcome once supplied.</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FullBleedCTA heading="Have a project in mind?">
+    <CTAButton href="/contact/" onDark={true}>Get a Free Quote</CTAButton>
+  </FullBleedCTA>
+</Layout>
+
+<style>
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+  }
+
+  .project-card {
+    overflow: hidden;
+  }
+
+  .project-card-body {
+    padding: 1.5rem;
+  }
+
+  .project-card-note {
+    margin: 0.4rem 0 0;
+    font-size: 0.9rem;
+    color: var(--mid-grey);
+  }
+
+  @media (max-width: 700px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

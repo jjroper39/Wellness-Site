@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import CTAButton from '../components/CTAButton.astro';
+import EditorialSplit from '../components/EditorialSplit.astro';
+import FullBleedCTA from '../components/FullBleedCTA.astro';
+
+const services = [
+  {
+    id: 'air-conditioning',
+    eyebrow: 'Cooling',
+    heading: 'Air Conditioning',
+    alt: 'A discreet modern air conditioning unit installed in a bright interior',
+    variant: 'ice' as const,
+    reverse: false,
+    body: [
+      'Efficient cooling and climate control, professionally specified and installed.',
+      'We survey your property, specify a system sized correctly for the space, and install it cleanly — whether that’s a single room or a full building.',
+      'Ongoing servicing keeps systems running efficiently long after installation.',
+    ],
+  },
+  {
+    id: 'heating',
+    eyebrow: 'Heating',
+    heading: 'Heating',
+    alt: 'A warm, well-lit interior with an efficient heating system',
+    variant: 'orange' as const,
+    reverse: true,
+    body: [
+      'Practical, efficient heating solutions built around your property and usage.',
+      'From individual rooms to whole-building systems, we specify heating that matches how the space is actually used — not a one-size-fits-all install.',
+    ],
+  },
+  {
+    id: 'servicing-repairs',
+    eyebrow: 'Care',
+    heading: 'Servicing &amp; Repairs',
+    alt: 'An engineer servicing an air conditioning or heating unit',
+    variant: 'navy' as const,
+    reverse: false,
+    body: [
+      'Diagnostics, maintenance and repair to keep systems performing properly.',
+      'Whether it’s a routine service or a system that’s stopped performing as it should, we diagnose the issue properly before recommending any work.',
+    ],
+  },
+  {
+    id: 'maintenance-plans',
+    eyebrow: 'Ongoing',
+    heading: 'Maintenance Plans',
+    alt: 'A technician carrying out planned maintenance on a commercial HVAC unit',
+    variant: 'blue' as const,
+    reverse: true,
+    body: [
+      'Planned care that helps reduce downtime and protect long-term performance.',
+      'A maintenance plan means fewer surprises — regular checks that catch small issues before they become costly ones.',
+    ],
+    cta: { label: 'See Maintenance Plans', href: '/maintenance/' },
+  },
+];
+---
+
+<Layout
+  title="Services"
+  description="Air conditioning, heating, servicing and repairs, and maintenance plans — efficient climate solutions for homes and businesses from Vertex Climate."
+>
+  <Hero
+    eyebrow="Services"
+    heading="What we do."
+    copy="Four core services, one considered approach: systems specified around your property, installed cleanly and supported for the long term."
+    imageAlt="A range of heating and cooling equipment installed in a contemporary building"
+    imageVariant="navy"
+  />
+
+  {services.map((s) => (
+    <section id={s.id} class="section--white service-module">
+      <div class="wrap">
+        <EditorialSplit imageAlt={s.alt} imageVariant={s.variant} reverse={s.reverse}>
+          <p class="eyebrow">{s.eyebrow}</p>
+          <h2 set:html={s.heading} />
+          {s.body.map((p) => <p>{p}</p>)}
+          {s.cta && <CTAButton href={s.cta.href} variant="outline">{s.cta.label}</CTAButton>}
+        </EditorialSplit>
+      </div>
+    </section>
+  ))}
+
+  <FullBleedCTA heading="Not sure what you need?">
+    <CTAButton href="/contact/" onDark={true}>Get a Free Quote</CTAButton>
+  </FullBleedCTA>
+</Layout>
+
+<style>
+  .service-module:nth-child(even) {
+    background: var(--ice);
+  }
+</style>
