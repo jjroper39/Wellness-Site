@@ -14,6 +14,21 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Only include facts that are actually known. Do not add telephone,
+// address, geo or openingHours here with placeholder text — invalid or
+// fake structured data can get a listing suppressed in Google. Add those
+// fields (with real values) once confirmed.
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HVACBusiness',
+  name: 'Vertex Climate',
+  description:
+    'Efficient air-conditioning and heating solutions for domestic and commercial customers, from installation to ongoing maintenance.',
+  url: String(Astro.site),
+  logo: new URL('/vertex-logo.png', Astro.site).toString(),
+  slogan: 'Comfort. Engineered.',
+};
 ---
 
 <!doctype html>
@@ -28,6 +43,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/oswald-700-latin.woff2" as="font" type="font/woff2" crossorigin />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     <title>{title} · Vertex Climate</title>
@@ -37,13 +54,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta name="twitter:card" content="summary_large_image" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
   </head>
   <body>
     <Header />
