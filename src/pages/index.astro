@@ -62,9 +62,20 @@ const faqs = [
     <CTAButton href="/services/" variant="outline" onDark={true}>Explore Our Services</CTAButton>
   </Hero>
 
-  <section class="section--white trust-strip">
-    <div class="wrap trust-strip-inner">
-      <p class="tbd">[Accreditation / warranty / review information to be added]</p>
+  <section class="section--white intro-strip">
+    <div class="wrap intro-strip-inner">
+      <p>
+        With over 15 years of experience, Vertex specialises in the
+        installation and maintenance of high-quality air conditioning and
+        heating systems for both domestic and commercial properties.
+      </p>
+      <p>
+        We pride ourselves on reliability, efficiency and expert
+        knowledge, delivering professional solutions tailored to your
+        needs. From initial consultation through to installation and
+        ongoing maintenance, you can be confident that your comfort is in
+        experienced hands.
+      </p>
     </div>
   </section>
 
@@ -161,13 +172,23 @@ const faqs = [
 </Layout>
 
 <style>
-  .trust-strip-inner {
+  .intro-strip {
+    padding-block: 3.5rem;
+  }
+
+  .intro-strip-inner {
+    max-width: 46rem;
+    margin: 0 auto;
     text-align: center;
   }
 
-  .trust-strip-inner p {
-    margin: 0;
-    font-size: 0.9rem;
+  .intro-strip-inner p {
+    font-size: 1.05rem;
+    color: var(--mid-grey);
+  }
+
+  .intro-strip-inner p:last-child {
+    margin-bottom: 0;
   }
 
   .services-grid {
