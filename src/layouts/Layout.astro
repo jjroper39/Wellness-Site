@@ -15,10 +15,10 @@ const {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-// Only include facts that are actually known. Do not add telephone,
-// address, geo or openingHours here with placeholder text — invalid or
-// fake structured data can get a listing suppressed in Google. Add those
-// fields (with real values) once confirmed.
+// Only include facts that are actually known. No fixed street address yet
+// (this operates as a service-area business), so `address`/`geo` are left
+// out rather than filled with placeholder text — invalid or fake
+// structured data can get a listing suppressed in Google.
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'HVACBusiness',
@@ -28,6 +28,9 @@ const localBusinessSchema = {
   url: String(Astro.site),
   logo: new URL('/vertex-logo.png', Astro.site).toString(),
   slogan: 'Comfort. Engineered.',
+  telephone: '+441673842333',
+  email: 'contact@vertexclimate.co.uk',
+  areaServed: ['Lincolnshire', 'Nottinghamshire'],
 };
 ---
 

@@ -17,6 +17,11 @@ const legal = [
   { href: '/privacy/', label: 'Privacy' },
   { href: '/terms/', label: 'Terms' },
 ];
+
+const phoneDisplay = '01673 842333';
+const phoneHref = 'tel:+441673842333';
+const email = 'contact@vertexclimate.co.uk';
+const serviceArea = 'Lincolnshire & Nottinghamshire';
 ---
 
 <footer class="site-footer">
@@ -40,9 +45,9 @@ const legal = [
 
     <div class="footer-contact">
       <p class="footer-heading">Contact</p>
-      <p><Icon name="phone" size={15} /><span class="tbd">[VERTEX PHONE]</span></p>
-      <p class="footer-email tbd">[VERTEX EMAIL]</p>
-      <p><Icon name="map-pin" size={15} /><span class="tbd">[SERVICE AREA]</span></p>
+      <p><Icon name="phone" size={15} /><a href={phoneHref}>{phoneDisplay}</a></p>
+      <a class="footer-email" href={`mailto:${email}`}>{email}</a>
+      <p><Icon name="map-pin" size={15} /><span>{serviceArea}</span></p>
     </div>
   </div>
 

@@ -13,6 +13,9 @@ import FAQAccordion from '../components/FAQAccordion.astro';
 import FullBleedCTA from '../components/FullBleedCTA.astro';
 import Icon from '../components/Icon.astro';
 
+const phoneDisplay = '01673 842333';
+const phoneHref = 'tel:+441673842333';
+
 const services = [
   { icon: 'snowflake', name: 'Air Conditioning', copy: 'Efficient cooling and climate control, professionally specified and installed.', href: '/services/#air-conditioning' },
   { icon: 'flame', name: 'Heating', copy: 'Practical, efficient heating solutions built around your property and usage.', href: '/services/#heating' },
@@ -150,9 +153,9 @@ const faqs = [
 
   <FullBleedCTA heading="Ready for better comfort?">
     <CTAButton href="/contact/" onDark={true}>Get a Free Quote</CTAButton>
-    <a href="#" class="final-cta-phone btn btn--outline btn--on-dark">
+    <a href={phoneHref} class="final-cta-phone btn btn--outline btn--on-dark">
       <Icon name="phone" size={16} />
-      <span class="tbd-inline">[VERTEX PHONE]</span>
+      <span>{phoneDisplay}</span>
     </a>
   </FullBleedCTA>
 </Layout>

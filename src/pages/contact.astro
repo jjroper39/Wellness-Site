@@ -3,6 +3,11 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import QuoteForm from '../components/QuoteForm.astro';
 import Icon from '../components/Icon.astro';
+
+const phoneDisplay = '01673 842333';
+const phoneHref = 'tel:+441673842333';
+const email = 'contact@vertexclimate.co.uk';
+const serviceArea = 'Lincolnshire & Nottinghamshire';
 ---
 
 <Layout
@@ -29,9 +34,9 @@ import Icon from '../components/Icon.astro';
       <aside class="contact-details-col">
         <div class="contact-detail-card card">
           <h3>Direct contact</h3>
-          <p><Icon name="phone" size={16} /><span class="tbd-inline">[VERTEX PHONE]</span></p>
-          <p class="tbd">[VERTEX EMAIL]</p>
-          <p><Icon name="map-pin" size={16} /><span class="tbd-inline">[SERVICE AREA]</span></p>
+          <p><Icon name="phone" size={16} /><a href={phoneHref}>{phoneDisplay}</a></p>
+          <p><a href={`mailto:${email}`}>{email}</a></p>
+          <p><Icon name="map-pin" size={16} /><span>{serviceArea}</span></p>
         </div>
       </aside>
     </div>
@@ -70,6 +75,12 @@ import Icon from '../components/Icon.astro';
     gap: 0.5rem;
     font-size: 0.9rem;
     margin: 0 0 0.9rem;
+  }
+
+  .contact-detail-card a {
+    text-decoration: none;
+    color: var(--navy);
+    font-weight: 600;
   }
 
   @media (max-width: 900px) {
