@@ -13,6 +13,12 @@ const benefits = [
   { icon: 'tool', label: 'Priority support', copy: 'Faster response when something does need attention.' },
 ];
 
+const packages = [
+  { name: 'Basic annual service', monthly: '£12 per month', annual: '£150 per year', cover: 'One annual service visit' },
+  { name: 'Standard maintenance plan', monthly: '£12–£22', annual: '£150–£260', cover: 'Annual service + priority call-outs and discounts' },
+  { name: 'Enhanced plan', monthly: '£20–£40+', annual: '£240–£480+', cover: '2 visits and/or better breakdown cover' },
+];
+
 const faqs = [
   { question: 'What does a maintenance plan include?', answer: 'The exact scope depends on your system and property. We’ll set this out clearly when we put a plan together with you.' },
   { question: 'How often are visits scheduled?', answer: 'This depends on the type of system and how it’s used — we’ll recommend a schedule as part of your plan.' },
@@ -47,6 +53,40 @@ const faqs = [
   </section>
 
   <section class="section--ice">
+    <div class="wrap">
+      <SectionHeading eyebrow="Pricing" heading="Servicing & maintenance packages" align="center" />
+      <p class="pricing-scroll-hint">Swipe to see all columns &rarr;</p>
+      <div class="pricing-table-wrap">
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th scope="col">Package</th>
+              <th scope="col">Typical monthly equivalent</th>
+              <th scope="col">Typical annual cost</th>
+              <th scope="col">Typical cover</th>
+            </tr>
+          </thead>
+          <tbody>
+            {packages.map((p) => (
+              <tr>
+                <th scope="row">{p.name}</th>
+                <td data-label="Monthly equivalent">{p.monthly}</td>
+                <td data-label="Annual cost">{p.annual}</td>
+                <td data-label="Cover">{p.cover}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="pricing-note">
+        Prices shown are typical examples and will vary depending on your
+        system and property — we'll confirm exact costs as part of your
+        plan.
+      </p>
+    </div>
+  </section>
+
+  <section class="section--white">
     <div class="wrap wrap--narrow">
       <SectionHeading eyebrow="FAQ" heading="Maintenance questions" />
       <FAQAccordion items={faqs} />
@@ -69,6 +109,81 @@ const faqs = [
   @media (max-width: 860px) {
     .benefits-grid {
       grid-template-columns: 1fr;
+    }
+  }
+
+  .pricing-scroll-hint {
+    display: none;
+    margin: 1.5rem 0 0.6rem;
+    font-size: 0.78rem;
+    color: var(--mid-grey);
+  }
+
+  .pricing-table-wrap {
+    margin-top: 3rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    overflow-x: auto;
+  }
+
+  @media (max-width: 700px) {
+    .pricing-scroll-hint {
+      display: block;
+    }
+
+    .pricing-table-wrap {
+      margin-top: 0;
+    }
+  }
+
+  .pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 640px;
+  }
+
+  .pricing-table th,
+  .pricing-table td {
+    text-align: left;
+    padding: 1rem 1.25rem;
+    font-size: 0.92rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .pricing-table thead th {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--mid-grey);
+    background: var(--off-white);
+  }
+
+  .pricing-table tbody th {
+    font-weight: 600;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+
+  .pricing-table tbody td {
+    color: var(--mid-grey);
+  }
+
+  .pricing-table tbody tr:last-child th,
+  .pricing-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .pricing-note {
+    margin: 1.25rem 0 0;
+    font-size: 0.85rem;
+    color: var(--mid-grey);
+  }
+
+  @media (max-width: 640px) {
+    .pricing-table-wrap {
+      border-radius: var(--radius-card);
     }
   }
 </style>
