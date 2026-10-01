@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import CTAButton from '../components/CTAButton.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import FeatureIcon from '../components/FeatureIcon.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import FullBleedCTA from '../components/FullBleedCTA.astro';
+
+const benefits = [
+  { icon: 'tool', label: 'Proper diagnostics', copy: 'We find the actual cause before recommending any work, rather than guessing at parts.' },
+  { icon: 'check', label: 'Honest advice', copy: 'A clear explanation of what’s wrong and what it’ll take to fix it, before any work begins.' },
+  { icon: 'clipboard-check', label: 'Lasting fixes', copy: 'Repairs carried out properly, so the same fault doesn’t come straight back.' },
+];
+
+const faqs = [
+  { question: 'What kind of faults can you repair?', answer: 'We diagnose and repair most common air conditioning and heating faults, from units that won’t turn on to systems that aren’t heating or cooling properly.' },
+  { question: 'How quickly can you come out?', answer: 'We aim to respond as quickly as possible. Get in touch with details of the issue and we’ll let you know the earliest available slot.' },
+  { question: 'Do you repair both domestic and commercial systems?', answer: 'Yes — we carry out repairs for homes and businesses alike.' },
+  { question: 'What if my system needs replacing instead of repairing?', answer: 'If a repair isn’t the right call, we’ll tell you honestly and talk through your options — there’s no pressure to replace a system that can be fixed.' },
+];
+---
+
+<Layout
+  title="Repairs"
+  description="Fast, honest diagnostics and repairs for air conditioning and heating systems, for homes and businesses across Lincolnshire and Nottinghamshire."
+>
+  <Hero
+    eyebrow="Repairs"
+    heading="Fast, reliable repairs."
+    copy="When a system isn't performing as it should, we diagnose the issue properly and get it fixed — for homes and businesses alike."
+    imageAlt="An engineer diagnosing a fault on an air conditioning unit"
+    imageVariant="orange"
+    height="tall"
+  >
+    <CTAButton href="/contact/">Book a Repair</CTAButton>
+  </Hero>
+
+  <section class="section--white">
+    <div class="wrap">
+      <SectionHeading eyebrow="Why it matters" heading="Properly diagnosed, properly fixed" align="center" />
+      <div class="benefits-grid">
+        {benefits.map((b) => (
+          <FeatureIcon icon={b.icon} label={b.label}>{b.copy}</FeatureIcon>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--ice">
+    <div class="wrap wrap--narrow">
+      <SectionHeading eyebrow="FAQ" heading="Repair questions" />
+      <FAQAccordion items={faqs} />
+    </div>
+  </section>
+
+  <FullBleedCTA heading="Something not working properly?">
+    <CTAButton href="/contact/" onDark={true}>Book a Repair</CTAButton>
+  </FullBleedCTA>
+</Layout>
+
+<style>
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 860px) {
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
